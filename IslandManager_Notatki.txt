@@ -1,0 +1,22 @@
+IslandManager
+
+Aplikacja z interfejsem graficznym - desktopowa, zwiazana z algorytmem ewolucyjnym. Algorytm ewolucyjny inspirowany przyroda, pozwala nam optymailzowac cos. Znajdowac minimum lub maximum w algorytmie. SGA - Standard Genetic Algorithm.
+Mamy wyspy, na kazdej z wysp odbywaja sie ewolucje niezaleznie od sb. Czasem odbywa sie jakas mala migracja. Symulacja modelu wyspowego. Na kazdej wyspie mozemy kliknac, otworzyc konfiguracje i ustawic parametry mutacji. Mozemy wybrac sb jeden z problemow ktore bd rozwiazywac. Topologia dla wysp, oraz problem ktory bd rozwiazywany na wyspach. Rowniez komendy cofnij, ponow. W trackie symulacji mozna pokazac ze osobnik przeskakuje z jednej wyspy na druga. Kazda wyspa ma w srodku swoj algorytm, moze na biezaca pokazywac wyniki ktory byly w kolejnych epokach. Na koncu klikamy na wyspe i otrzymujemy wykres. GUI bd dostawac od topologi kolekcje wysp i bd musial sb z nia poradzic. Czynnik mierzony przez wyspy to jakosc rozwiazania danego problemu.
+
+3 zespoly:
+1. Wizualizacja - odpowiada za:	***** NASZE ZADANIE *****
+Okienko z grafem(wyspami), kolorowanie, modul z wykresikiem.
+2. Topologia - odpowiada za:
+Zarzadzanie wyspami, komunikacja miedzy nimi, obsluga migracji, pobieranie i wyrzucanie migracji, model topologi.
+3. Pojedyncza wyspa - odpowiada za:
+Algorytm ewolucyjny(dwie mutacje, dwa krzyzowania), dekorator wyspowy ktory ma w sb wypustki do migracji, zapisywanie logow.
+
+Realizujemy projekt krokowo _ Racional Unified Proces.
+1. Inception - Wporwadzanie do wymagan + wizja. 1.5 spotkania
+2. ELaboration - analiza tego co chcemy zrobic(architektura calego systemu). 1.5 spotkania
+3. Construction - 6 spotkan
+4. Transision - preentacja w ramach Construction.
+
+Dokumentacja projektu na trac'u.
+Komunikacja - trello.
+2 etapy na ktorym bd sie synchronizowac.
