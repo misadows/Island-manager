@@ -1,10 +1,17 @@
 IslandManager
 
-Aplikacja z interfejsem graficznym - desktopowa, zwiazana z algorytmem ewolucyjnym. Algorytm ewolucyjny inspirowany przyroda, pozwala nam optymailzowac cos. Znajdowac minimum lub maximum w algorytmie. SGA - Standard Genetic Algorithm.
-Mamy wyspy, na kazdej z wysp odbywaja sie ewolucje niezaleznie od sb. Czasem odbywa sie jakas mala migracja. Symulacja modelu wyspowego. Na kazdej wyspie mozemy kliknac, otworzyc konfiguracje i ustawic parametry mutacji. Mozemy wybrac sb jeden z problemow ktore bd rozwiazywac. Topologia dla wysp, oraz problem ktory bd rozwiazywany na wyspach. Rowniez komendy cofnij, ponow. W trackie symulacji mozna pokazac ze osobnik przeskakuje z jednej wyspy na druga. Kazda wyspa ma w srodku swoj algorytm, moze na biezaca pokazywac wyniki ktory byly w kolejnych epokach. Na koncu klikamy na wyspe i otrzymujemy wykres. GUI bd dostawac od topologi kolekcje wysp i bd musial sb z nia poradzic. Czynnik mierzony przez wyspy to jakosc rozwiazania danego problemu.
+Aplikacja z interfejsem graficznym - desktopowa, zwiazana z algorytmem ewolucyjnym. Algorytm ewolucyjny inspirowany przyroda,
+pozwala nam optymailzowac cos. Znajdowac minimum lub maximum w algorytmie. SGA - Standard Genetic Algorithm.
+Mamy wyspy, na kazdej z wysp odbywaja sie ewolucje niezaleznie od sb. Czasem odbywa sie jakas mala migracja. 
+Symulacja modelu wyspowego. Na kazdej wyspie mozemy kliknac, otworzyc konfiguracje i ustawic parametry mutacji. 
+Mozemy wybrac sb jeden z problemow ktore bd rozwiazywac. Topologia dla wysp, oraz problem ktory bd rozwiazywany na wyspach. 
+Rowniez komendy cofnij, ponow. W trackie symulacji mozna pokazac ze osobnik przeskakuje z jednej wyspy na druga. 
+Kazda wyspa ma w srodku swoj algorytm, moze na biezaca pokazywac wyniki ktory byly w kolejnych epokach. 
+Na koncu klikamy na wyspe i otrzymujemy wykres. GUI bd dostawac od topologi kolekcje wysp i bd musial sb z nia poradzic. 
+Czynnik mierzony przez wyspy to jakosc rozwiazania danego problemu.
 
 3 zespoly:
-1. Wizualizacja - odpowiada za:	***** NASZE ZADANIE *****
+1. Wizualizacja - odpowiada za:
 Okienko z grafem(wyspami), kolorowanie, modul z wykresikiem.
 2. Topologia - odpowiada za:
 Zarzadzanie wyspami, komunikacja miedzy nimi, obsluga migracji, pobieranie i wyrzucanie migracji, model topologi.
