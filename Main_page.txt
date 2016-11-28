@@ -1,0 +1,23 @@
+= Island Manager - Wizualizacja  =
+
+== Skład zespołu ==
+
+* Paweł Banach
+* Małgorzata Olszewska
+
+== Kod źródłowy ==
+
+* '''Kod źródłowy''' [https://github.com/misadows/Island-manager]
+
+== Dokumenty ==
+
+* [wiki:Wizualizacja/Wizja Wizja]
+{{{#!comment
+* [wiki:Wizualizacja/Plan Plan i stan prac]
+* [wiki:Wizualizacja/Wymagania Specyfikacja wymagań systemu oraz testów akceptacyjnych]
+* [wiki:Wizualizacja/Architektura Specyfikacja architektury systemu]
+}}}
+
+== Notatki ze spotkań == 
+
+* '''Spotkanie 1''' [wiki:Wizualizacja/Spotkanie-2016-11-15 2016-11-15]

@@ -1,0 +1,105 @@
+= Island Manager - Wizualizacja - Wizja =
+{{{#!comment
+== Skrótowa nazwa == 
+
+=== Pełna nazwa ===
+}}}
+== Wizja ==
+
+||=Data=||=Wersja=||=Opis=||=Autor=||
+||   18.11.2016   ||    1.0    ||   Sformułowanie wizji projektu   ||   Paweł Banach, Małgorzata Olszewska   ||			
+
+'''Autorzy''':\\
+Paweł Banach\\
+Małgorzata Olszewska\\
+
+1.  '''Wstęp'''
+
+  Tematem projektu jest aplikacja desktop'owa z interfejsem graficznym, realizującej algorytm ewolucyjny, która powinna być przede wszystkim funkcjonalna, przejrzysta, czytelna a także zrozumiała dla zwykłego użytkownika.
+
+  1.1. '''Słownik'''
+
+  ||=Pojęcie=||=Definicja=||
+  || JavaFX || JavaFX biblioteka graficzna, która pozwala na stosunkowo łatwe tworzenie wizualnie efektownych aplikacji, które mogą być uruchamiane jako samodzielne aplikacje na komputerach, jako aplety na stronach internetowych, aplikacje uruchamiane z przeglądarek a także jako programy na urządzeniach mobilnych. ||	
+
+  1.2. '''Odnośniki'''
+  
+* „Thinking in Java. Edycja polska. Wydanie IV”, autor: Bruce Eckel
+* „Learn JavaFX 8 Building User Experience and Interfaces with Java 8”, autor: Sharan Kishori
+* http://docs.oracle.com/javase/8/javase-clienttechnologies.htm
+
+2. '''Opis problemów'''
+
+  '''Problem''':  Wizualizacja okienka z wyspami, które będą reprezentować graf.\\
+  '''Przyczyna''': Przedstawienie postawionego problemu w formie graficznej.\\
+  '''Rozwiązanie''': Kompatybilność z rozmiarem (minimalizacja, tryb pełnoekranowy) definiujemy dla kontrolerów rozmiary oraz definiujemy dla kontenerów jak mają się zachowywać w stosunku do osadzonych w nich kontrolerów.
+
+  '''Problem''': Wizualizacja jakości rozwiązania poprzez kolorowanie wyspy.\\
+  '''Przyczyna''': Przedstawienie rezultatów w formie graficznej.\\
+  '''Rozwiązanie''':  Modyfikowane poprzez CSS, javafx.scene.control \\
+
+  '''Problem''': Wyświetlenie modułu z wykresami po kliknięciu na wyspę.\\
+  '''Przyczyna''': Przedstawienie uzyskanych rezultatów na przestrzeni czasu.\\
+  '''Rozwiązanie''':  Wykorzystanie JAVA FX Chart\\
+
+3. '''Opis użytkownika i zewnętrznych podsystemów'''
+
+* **''Kim są docelowi użytkownicy planowanego systemu?**''\\
+  Docelowi użytkownicy planowanego systemu to grupa osób w średnim wieku interesująca się ewolucją oraz wszelkimi aspektami związanymi z przyrodą jako nauki o rozwoju.
+
+* **''Na czym polegają ich zadania?**''\\
+  Zadaniami użytkowników systemu są m.in. zinterpretowanie problemu, wybór algorytmu, dokonywanie symulacji ewolucji.
+
+* **''Czy i dlaczego będą chcieli używać planowanego systemu?**''\\
+  Głównym motorem do korzystania z aplikacji będzie zainteresowanie teorią ewolucji, chęć rozwiązania problemu opierającego się na algorytmie ewolucyjnym, chęć poszerzania wiedzy w tej dziedzinie, a także zwykła ludzka ciekawość.
+
+* **''Jakie są ich umiejętności, doświadczenie i nastawienie?**''\\
+  Umiejętności użytkowników zależne są od ich wieku, jednak aplikacja w większości przypadków trafia do grona odbiorców w przedziale wiekowym 20-30 lat, gdyż są oni nie tylko najbardziej obeznani w dziedzinie aplikacji ale także wykazują największe zainteresowanie dziedziną ewolucji.
+
+* **''Jakie ograniczenia techniczne, organizacyjne, psychologiczne i środowiskowe mogą przeszkodzić w udanym wdrożeniu systemu?**''\\
+  Ograniczenia mogą wynikać z braku podstawowej wiedzy użytkowników na temat algorytmów ewolucyjnych. Kolejną barierą może być mała czytelność i łatwość obsługi aplikacji. Co więcej w danym czasie na rynku może pojawić się podobna aplikacja do naszej co sprawi, ze bezsensownym będzie wdrażanie naszej aplikacji ze względu na wysokie koszty i niskie zyski.
+
+4. '''Opis produktu'''
+
+  Produktem będzie dektop'owa aplikacja z interfejsem graficznym, której głównym zadaniem będzie rozwiązanie wprowadzonego problemu w oparciu o algorytm ewolucyjny(SGA - Standard Genetic Algorithm). Interfejs graficzny będzie stanowiło kilka okienek. W głównym okienku będą przedstawione wyspy na których ewolucje będą odbywać się niezależnie od siebie, z wyjątkiem gdy będzie dopuszczona migracja, czyli zmiana wyspy przez osobnika. Pozostałe okienka przewidziane są na konfiguracje i ustawianie parametrów algorytmu. Przewidziane jest również okienko z wykresem, które zostanie otworzone po kliknięciu na wyspę. Będzie przedstawiało rezultaty rozwiązania w poszczególnych przedziałach czasowych. Dodatkowo aplikacja zostanie wyposażona w przyciski "Cofnij" oraz "Ponów" co ułatwi poruszania się między prowadzonymi akcjami.
+
+5. '''Wymagania funkcjonalne i ich priorytety'''
+
+  ||=Wymaganie funkcjonalne=||=Priorytet=||
+  ||  Realizacja algorytmu ewolucyjnego || Wysoki ||
+  || Sterowanie przebiegiem programu || Wysoki ||
+  || Konfiguracja parametrów mutacji || Wysoki ||
+  || Wybór problemu || Wysoki ||
+  || Konstrukcja topologii wysp || Wysoki ||
+  || Wykres z rezultatami || Wysoki ||
+  || Symulacja modelu wyspowego || Średni ||
+  || Wizualizacja migracji osobników || Niski || 
+
+6. '''Inne wymagania dotyczące produktu'''
+
+  '''Wymagania jakościowe'''
+  * Przejrzystość aplikacji
+  * Czytelność aplikacji
+  * Łatwość w obsłudze (prostota)
+
+  '''Stosowane standardy'''
+  * RUP
+
+  '''Wymagania systemowe i technologiczne'''
+  * Platforma wdrożenia - B2B
+  * Komunikacja – Trello
+  * Łatwa przenośność systemu ze względu na wysokopoziomowy język oraz interfejsy API
+
+  '''Wymagania stawiane dokumentacji'''
+  * Podręcznik użytkownika
+  * Podręcznik instalacji oraz konfiguracji
+  * Podręcznik będący dokumentacja techniczną naszej aplikacji
+
+
+7. '''Wstępna analiza ryzyka'''
+
+  ||=Opis=||=Prawdopodobieństwo (1-10)=||=Skutek (1-10)=||
+  ||Niepowodzenie w tworzeniu aplikacji||=5=||=7=||
+  ||Stworzenie aplikacji egzystującej już na rynku||=2=||=10=||
+  ||Niedostosowanie aplikacji do odbiorcy||=3=||=5=||
+  ||Niewykrycie błędów przed wdrożeniem||=2=||=8=||

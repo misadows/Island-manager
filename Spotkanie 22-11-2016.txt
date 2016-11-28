@@ -1,0 +1,7 @@
+Za tydzień przedstawiwamy architekture rozwiązania i przedstawiwamy ją innym. 
+Musi zawierać:
+Szkic architektury np. za pomocą diagramu.
+Miejsca gdzie się łaczymy z systemem.
+Potrzebujemy gdzieś składać wyniki algorytmu.
+Musimy algorytmowi przesłać wszystkie parametry itd.
+Balasamiq mockaps - zrobić mockup'y.
