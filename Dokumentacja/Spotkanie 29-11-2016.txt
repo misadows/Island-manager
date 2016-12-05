@@ -1,0 +1,6 @@
+Topologia - parametry:
+Topologia wysp
+Liczba osobników wyspy
+Migracje
+Dorobić interfejs 
+Porobić per parametry per wyspy.
