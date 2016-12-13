@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Visualisation.ConfigurationMenuController">
+   <children>
+      <SplitPane dividerPositions="0.6" layoutX="328.0" layoutY="116.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.3" layoutX="27.0" layoutY="87.0" orientation="VERTICAL" prefHeight="598.0" prefWidth="275.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Label layoutX="128.0" layoutY="17.0" text="Topology" AnchorPane.leftAnchor="128.0" AnchorPane.topAnchor="5.0">
+                                 <font>
+                                    <Font name="System Font" size="13.0" />
+                                 </font>
+                              </Label>
+                              <RadioButton layoutX="210.0" layoutY="75.0" mnemonicParsing="false" text="Unidirectional circle" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="70.0" />
+                              <RadioButton layoutX="137.0" layoutY="88.0" mnemonicParsing="false" text="Each  of each" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0" />
+                              <RadioButton layoutX="20.0" layoutY="154.0" mnemonicParsing="false" text="Ladder" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="150.0" />
+                              <RadioButton layoutX="153.0" layoutY="150.0" mnemonicParsing="false" text="Bidirectional circle" AnchorPane.topAnchor="150.0" />
+                              <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="35.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="5.0">
+                                 <image>
+                                    <Image url="@Images/EachOfEach.png" />
+                                 </image></ImageView>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="185.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="90.0">
+                                 <image>
+                                    <Image url="@Images/BidirectionalCircle.png" />
+                                 </image></ImageView>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="50.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="90.0">
+                                 <image>
+                                    <Image url="@Images/Ladder.png" />
+                                 </image></ImageView>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="230.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="5.0">
+                                 <image>
+                                    <Image url="@Images/UnidirectionalCircle.png" />
+                                 </image></ImageView>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <SplitPane dividerPositions="0.23, 0.92" layoutX="70.0" layoutY="-15.0" orientation="VERTICAL" prefHeight="383.0" prefWidth="273.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <Label layoutX="129.0" layoutY="6.0" text="Function" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="5.0" />
+                                          <SplitMenuButton layoutX="5.0" layoutY="42.0" mnemonicParsing="false" text="Functions" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="25.0">
+                                            <items>
+                                              <MenuItem mnemonicParsing="false" text="Action 1" />
+                                              <MenuItem mnemonicParsing="false" text="Action 2" />
+                                            </items>
+                                          </SplitMenuButton>
+                                          <Label layoutX="20.0" layoutY="65.0" text="Minimum" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="65.0" />
+                                          <Label layoutX="177.0" layoutY="65.0" text="Maximum" AnchorPane.leftAnchor="177.0" AnchorPane.topAnchor="65.0" />
+                                          <TextField layoutX="79.0" layoutY="60.0" prefHeight="27.0" prefWidth="50.0" AnchorPane.leftAnchor="79.0" />
+                                          <TextField layoutX="241.0" layoutY="60.0" prefHeight="27.0" prefWidth="50.0" />
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <TabPane layoutY="21.0" prefHeight="263.0" prefWidth="271.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <tabs>
+                                              <Tab text="Island I">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Label layoutX="14.0" layoutY="14.0" text="Starting population" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0" />
+                                                            <TextField layoutX="132.0" layoutY="31.0" prefHeight="27.0" prefWidth="125.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                                            <Label layoutX="-2.0" layoutY="41.0" text="Crossover " AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="40.0" />
+                                                            <Slider layoutX="135.0" layoutY="41.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" />
+                                                            <Slider layoutX="135.0" layoutY="71.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="71.0" />
+                                                            <Label layoutX="6.0" layoutY="63.0" text="Mutation " AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="70.0" />
+                                                            <Label layoutX="9.0" layoutY="87.0" text="Generations" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="130.0" />
+                                                            <TextField layoutX="132.0" layoutY="95.0" prefHeight="27.0" prefWidth="125.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="125.0" />
+                                                            <Label layoutX="15.0" layoutY="98.0" text="Tournament selection" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="100.0" />
+                                                            <Slider layoutX="184.0" layoutY="101.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" />
+                                                            <Label layoutX="39.0" layoutY="152.0" text="Migration interval" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="160.0" />
+                                                            <Label layoutX="10.0" layoutY="176.0" text="Migration rate" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="190.0" />
+                                                            <Slider layoutX="173.0" layoutY="163.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" />
+                                                            <TextField layoutX="181.0" layoutY="185.0" prefHeight="27.0" prefWidth="125.0" />
+                                                            <CheckBox layoutX="107.0" layoutY="203.0" mnemonicParsing="false" text="Elitism" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="220.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </Tab>
+                                                <Tab text="Island II">
+                                                   <content>
+                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Label layoutX="14.0" layoutY="14.0" text="Starting population" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0" />
+                                                            <TextField layoutX="132.0" layoutY="31.0" prefHeight="27.0" prefWidth="125.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                                            <Label layoutX="-2.0" layoutY="41.0" text="Crossover " AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="40.0" />
+                                                            <Slider layoutX="135.0" layoutY="41.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" />
+                                                            <Slider layoutX="135.0" layoutY="71.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="71.0" />
+                                                            <Label layoutX="6.0" layoutY="63.0" text="Mutation " AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="70.0" />
+                                                            <Label layoutX="9.0" layoutY="87.0" text="Generations" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="130.0" />
+                                                            <TextField layoutX="132.0" layoutY="95.0" prefHeight="27.0" prefWidth="125.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="125.0" />
+                                                            <Label layoutX="15.0" layoutY="98.0" text="Tournament selection" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="100.0" />
+                                                            <Slider layoutX="184.0" layoutY="101.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" />
+                                                            <Label layoutX="39.0" layoutY="152.0" text="Migration interval" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="160.0" />
+                                                            <Label layoutX="10.0" layoutY="176.0" text="Migration rate" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="190.0" />
+                                                            <Slider layoutX="173.0" layoutY="163.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" />
+                                                            <TextField layoutX="181.0" layoutY="185.0" prefHeight="27.0" prefWidth="125.0" />
+                                                            <CheckBox layoutX="107.0" layoutY="203.0" mnemonicParsing="false" text="Elitism" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="220.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </content>
+                                                </Tab>
+                                                <Tab text="Island III">
+                                                   <content>
+                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Label layoutX="14.0" layoutY="14.0" text="Starting population" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0" />
+                                                            <TextField layoutX="132.0" layoutY="31.0" prefHeight="27.0" prefWidth="125.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                                            <Label layoutX="-2.0" layoutY="41.0" text="Crossover " AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="40.0" />
+                                                            <Slider layoutX="135.0" layoutY="41.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" />
+                                                            <Slider layoutX="135.0" layoutY="71.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="71.0" />
+                                                            <Label layoutX="6.0" layoutY="63.0" text="Mutation " AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="70.0" />
+                                                            <Label layoutX="9.0" layoutY="87.0" text="Generations" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="130.0" />
+                                                            <TextField layoutX="132.0" layoutY="95.0" prefHeight="27.0" prefWidth="125.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="125.0" />
+                                                            <Label layoutX="15.0" layoutY="98.0" text="Tournament selection" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="100.0" />
+                                                            <Slider layoutX="184.0" layoutY="101.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" />
+                                                            <Label layoutX="39.0" layoutY="152.0" text="Migration interval" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="160.0" />
+                                                            <Label layoutX="10.0" layoutY="176.0" text="Migration rate" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="190.0" />
+                                                            <Slider layoutX="173.0" layoutY="163.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" />
+                                                            <TextField layoutX="181.0" layoutY="185.0" prefHeight="27.0" prefWidth="125.0" />
+                                                            <CheckBox layoutX="107.0" layoutY="203.0" mnemonicParsing="false" text="Elitism" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="220.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </content>
+                                                </Tab>
+                                                <Tab text="Island IV">
+                                                   <content>
+                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Label layoutX="14.0" layoutY="14.0" text="Starting population" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0" />
+                                                            <TextField layoutX="132.0" layoutY="31.0" prefHeight="27.0" prefWidth="125.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                                            <Label layoutX="-2.0" layoutY="41.0" text="Crossover " AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="40.0" />
+                                                            <Slider layoutX="135.0" layoutY="41.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" />
+                                                            <Slider layoutX="135.0" layoutY="71.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="71.0" />
+                                                            <Label layoutX="6.0" layoutY="63.0" text="Mutation " AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="70.0" />
+                                                            <Label layoutX="9.0" layoutY="87.0" text="Generations" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="130.0" />
+                                                            <TextField layoutX="132.0" layoutY="95.0" prefHeight="27.0" prefWidth="125.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="125.0" />
+                                                            <Label layoutX="15.0" layoutY="98.0" text="Tournament selection" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="100.0" />
+                                                            <Slider layoutX="184.0" layoutY="101.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" />
+                                                            <Label layoutX="39.0" layoutY="152.0" text="Migration interval" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="160.0" />
+                                                            <Label layoutX="10.0" layoutY="176.0" text="Migration rate" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="190.0" />
+                                                            <Slider layoutX="173.0" layoutY="163.0" prefHeight="16.0" prefWidth="120.0" AnchorPane.rightAnchor="5.0" />
+                                                            <TextField layoutX="181.0" layoutY="185.0" prefHeight="27.0" prefWidth="125.0" />
+                                                            <CheckBox layoutX="107.0" layoutY="203.0" mnemonicParsing="false" text="Elitism" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="220.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </content>
+                                                </Tab>
+                                            </tabs>
+                                          </TabPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <ProgressBar layoutX="100.0" layoutY="26.0" prefHeight="20.0" prefWidth="150.0" progress="0.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                          <Button layoutX="6.0" layoutY="23.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="60.0" text="START" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Button>
+                                          <Button layoutX="76.0" layoutY="23.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="60.0" text="CANCEL" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="70.0">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

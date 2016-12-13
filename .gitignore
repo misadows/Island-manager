@@ -1,0 +1,7 @@
+*~
+.DS_Store
+.idea/
+out/
+src/.DS_Store
+src/Visualisation/.DS_Store
+Island-manager.iml
