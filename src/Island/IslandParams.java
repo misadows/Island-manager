@@ -4,8 +4,33 @@ package Island;
 public class IslandParams {
     private int creaturesNumber;
     private double migrationRate;
-    private double mutationProbability;
+    private double crossoverRate;
+    private double mutationRate;
     private int generationsNumber;
+    private int tournamentSize;
+    private boolean elitism;
+
+
+    public boolean isElitism() {
+        return elitism;
+    }
+
+    public int getTournamentSize() {
+        return tournamentSize;
+    }
+
+    public void setTournamentSize(int tournamentSize) {
+        this.tournamentSize = tournamentSize;
+    }
+
+
+    public double getCrossoverRate() {
+        return crossoverRate;
+    }
+
+    public double getMutationRate() {
+        return mutationRate;
+    }
 
 
     public int getCreaturesNumber() {
@@ -22,14 +47,6 @@ public class IslandParams {
 
     public void setMigrationRate(double migrationRate) {
         this.migrationRate = migrationRate;
-    }
-
-    public double getMutationProbability() {
-        return mutationProbability;
-    }
-
-    public void setMutationProbability(double mutationProbability) {
-        this.mutationProbability = mutationProbability;
     }
 
     public int getGenerationsNumber() {
