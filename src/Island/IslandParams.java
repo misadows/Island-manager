@@ -10,15 +10,27 @@ public class IslandParams {
     private int tournamentSize;
     private boolean elitism;
 
-    public IslandParams(int creaturesNumber, double migrationRate, double crossoverRate, double mutationRate, int tournamentSize, boolean elitism){
+
+    private String targetSolution;
+
+    public IslandParams(int creaturesNumber, double migrationRate, double crossoverRate, double mutationRate,
+                        int tournamentSize, boolean elitism, String targetSolution){
         this.creaturesNumber=creaturesNumber;
         this.migrationRate=migrationRate;
         this.crossoverRate=crossoverRate;
         this.mutationRate=mutationRate;
         this.tournamentSize=tournamentSize;
         this.elitism=elitism;
+        this.targetSolution=targetSolution;
     }
 
+    public String getTargetSolution() {
+        return targetSolution;
+    }
+
+    public void setTargetSolution(String targetSolution) {
+        this.targetSolution = targetSolution;
+    }
 
     public boolean isElitism() {
         return elitism;

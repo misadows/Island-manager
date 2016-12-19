@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Population {
     private ArrayList<Creature> creatures;
-    private FitnessCalculator fitnessCalculator = new FitnessCalculator();
+    private FitnessCalculator fitnessCalculator;
 
-    public Population(int populationSize){
+    public Population(int populationSize, FitnessCalculator fitnessCalculator){
         creatures = new ArrayList<>(populationSize);
-        fitnessCalculator.setSolution("111000011010101010000111010");
+        this.fitnessCalculator = fitnessCalculator;
     }
 
     public void fillPopulation(int populationSize){
