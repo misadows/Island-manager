@@ -2,7 +2,7 @@ package Island;
 
 
 public class FitnessCalculator {
-    private byte[] solution = new byte[64];
+    private byte[] solution;
 
     public void setSolution(byte[] newSolution) {
         solution = newSolution;
