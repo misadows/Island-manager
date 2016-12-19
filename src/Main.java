@@ -10,5 +10,9 @@ public class Main {
         for(int i=0; i<1000; i++){
             island.nextEpoch();
         }
+
+        for(int i=0; i<island.getResults().getEpochResults().size(); i++){
+            System.out.println("Fitness: " + island.getResults().getEpochResults().get(i).getMaxFitness());
+        }
     }
 }
