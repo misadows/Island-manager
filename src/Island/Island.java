@@ -1,6 +1,8 @@
 package Island;
 
 
+import java.util.Random;
+
 public class Island implements IslandInterface{
     private IslandParams params;
     private Population population;
@@ -21,13 +23,18 @@ public class Island implements IslandInterface{
     }
 
     @Override
-    public void sendCreature(CreatureParams params) {
-
+    public void sendCreature(Creature creature) {
+        population.addCreature(creature);
     }
 
     @Override
-    public CreatureParams getCreature() {
-        return null;
+    public Creature getCreature() {
+        int size = population.populationSize();
+        Random generator = new Random();
+        int i = generator.nextInt(size);
+        Creature creature = population.getCreature(i);
+        population.removeCreature(i);
+        return creature;
     }
 
     @Override
@@ -38,7 +45,7 @@ public class Island implements IslandInterface{
     }
 
     private void createPopulation(int populationSize){
-        population = new Population(populationSize, fitnessCalculator);
+        population = new Population(populationSize, fitnessCalculator, params.getGenotypeSize());
         population.fillPopulation(populationSize);
     }
 }

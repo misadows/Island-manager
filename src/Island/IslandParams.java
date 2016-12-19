@@ -9,8 +9,7 @@ public class IslandParams {
     private int generationsNumber;
     private int tournamentSize;
     private boolean elitism;
-
-
+    private int genotypeSize=64;
     private String targetSolution;
 
     public IslandParams(int creaturesNumber, double migrationRate, double crossoverRate, double mutationRate,
@@ -30,6 +29,10 @@ public class IslandParams {
 
     public void setTargetSolution(String targetSolution) {
         this.targetSolution = targetSolution;
+    }
+
+    public int getGenotypeSize() {
+        return genotypeSize;
     }
 
     public boolean isElitism() {

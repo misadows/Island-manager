@@ -4,8 +4,8 @@ package Island;
 public class Creature {
     private byte[] genes;
 
-    public Creature(){
-        generateRandomGenotype(64);
+    public Creature(int genotypeSize){
+        generateRandomGenotype(genotypeSize);
     }
 
     private void generateRandomGenotype(int genotypeLength){

@@ -6,6 +6,7 @@ public class GeneticAlgorithm {
     private double mutationRate;
     private int tournamentSize;
     private boolean elitism;
+    private int genotypeSize;
     private FitnessCalculator fitnessCalculator;
 
     public GeneticAlgorithm(IslandParams params, FitnessCalculator fitnessCalculator){
@@ -18,10 +19,11 @@ public class GeneticAlgorithm {
         mutationRate = params.getMutationRate();
         tournamentSize = params.getTournamentSize();
         elitism = params.isElitism();
+        genotypeSize = params.getGenotypeSize();
     }
 
     public Population evolvePopulation(Population pop) {
-        Population newPopulation = new Population(pop.populationSize(), fitnessCalculator);
+        Population newPopulation = new Population(pop.populationSize(), fitnessCalculator, genotypeSize);
 
         if (elitism) {
             newPopulation.saveCreature(0, pop.getFittest());
@@ -49,7 +51,7 @@ public class GeneticAlgorithm {
     }
 
     private Creature crossover(Creature indiv1, Creature indiv2) {
-        Creature newSol = new Creature();
+        Creature newSol = new Creature(genotypeSize);
 
         for (int i = 0; i < indiv1.genotypeSize(); i++) {
 
@@ -72,7 +74,7 @@ public class GeneticAlgorithm {
     }
 
     private Creature tournamentSelection(Population pop) {
-        Population tournament = new Population(tournamentSize, fitnessCalculator);
+        Population tournament = new Population(tournamentSize, fitnessCalculator, genotypeSize);
         for (int i = 0; i < tournamentSize; i++) {
             int randomId = (int) (Math.random() * pop.populationSize());
             tournament.saveCreature(i, pop.getCreature(randomId));

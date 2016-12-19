@@ -5,15 +5,17 @@ import java.util.ArrayList;
 public class Population {
     private ArrayList<Creature> creatures;
     private FitnessCalculator fitnessCalculator;
+    private int genotypeSize;
 
-    public Population(int populationSize, FitnessCalculator fitnessCalculator){
+    public Population(int populationSize, FitnessCalculator fitnessCalculator, int genotypeSize){
         creatures = new ArrayList<>(populationSize);
         this.fitnessCalculator = fitnessCalculator;
+        this.genotypeSize = genotypeSize;
     }
 
     public void fillPopulation(int populationSize){
         for(int i=0; i<populationSize; i++){
-            creatures.add(new Creature());
+            creatures.add(new Creature(genotypeSize));
         }
     }
 
@@ -29,6 +31,13 @@ public class Population {
         creatures.add(index, indiv);
     }
 
+    public void addCreature(Creature creature){
+        creatures.add(creature);
+    }
+
+    public void removeCreature(int index){
+        creatures.remove(index);
+    }
 
     public Creature getFittest() {
         if(populationSize()<1) return null;
