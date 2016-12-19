@@ -3,24 +3,40 @@ package Island;
 
 public class IslandParams {
     private int creaturesNumber;
+
     private double migrationRate;
-    private double crossoverRate;
-    private double mutationRate;
+    private double basicCrossoverRate;
+    private double basicMutationRate;
+    private double singlePointCrossoverRate;
+    private double singleMutationRate;
+
     private int generationsNumber;
     private int tournamentSize;
     private boolean elitism;
+
     private int genotypeSize=64;
     private String targetSolution;
 
-    public IslandParams(int creaturesNumber, double migrationRate, double crossoverRate, double mutationRate,
+    public IslandParams(int creaturesNumber, double migrationRate, double basicCrossoverRate,
+                        double basicMutationRate, double singlePointCrossoverRate, double singleMutationRate,
                         int tournamentSize, boolean elitism, String targetSolution){
         this.creaturesNumber=creaturesNumber;
         this.migrationRate=migrationRate;
-        this.crossoverRate=crossoverRate;
-        this.mutationRate=mutationRate;
+        this.basicCrossoverRate = basicCrossoverRate;
+        this.basicMutationRate = basicMutationRate;
+        this.singlePointCrossoverRate = singlePointCrossoverRate;
+        this.singleMutationRate = singleMutationRate;
         this.tournamentSize=tournamentSize;
         this.elitism=elitism;
         this.targetSolution=targetSolution;
+    }
+
+    public double getSinglePointCrossoverRate() {
+        return singlePointCrossoverRate;
+    }
+
+    public double getSingleMutationRate() {
+        return singleMutationRate;
     }
 
     public String getTargetSolution() {
@@ -47,12 +63,12 @@ public class IslandParams {
         this.tournamentSize = tournamentSize;
     }
 
-    public double getCrossoverRate() {
-        return crossoverRate;
+    public double getBasicCrossoverRate() {
+        return basicCrossoverRate;
     }
 
-    public double getMutationRate() {
-        return mutationRate;
+    public double getBasicMutationRate() {
+        return basicMutationRate;
     }
 
     public int getCreaturesNumber() {

@@ -33,7 +33,7 @@ public class FitnessCalculator {
         return fitness;
     }
 
-    int getMaxFitness() {
+    int getTargetSolution() {
         return solution.length;
     }
 }

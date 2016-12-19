@@ -1,13 +1,14 @@
 package Island;
 
 
-import Island.Transformation.BasicCrossover;
-import Island.Transformation.BasicMutation;
-import Island.Transformation.TransformationInterface;
+import Island.Transformation.*;
 
 public class GeneticAlgorithm {
-    private double crossoverRate;
-    private double mutationRate;
+    private double basicCrossoverRate;
+    private double basicMutationRate;
+    private double singleMutationRate;
+    private double singlePointCrossoverRate;
+
     private int tournamentSize;
     private boolean elitism;
     private int genotypeSize;
@@ -19,10 +20,14 @@ public class GeneticAlgorithm {
     }
 
     public void setParameters(IslandParams params){
-        crossoverRate = params.getCrossoverRate();
-        mutationRate = params.getMutationRate();
+        basicCrossoverRate = params.getBasicCrossoverRate();
+        basicMutationRate = params.getBasicMutationRate();
         tournamentSize = params.getTournamentSize();
         elitism = params.isElitism();
+
+        singleMutationRate = params.getSingleMutationRate();
+        singlePointCrossoverRate = params.getSinglePointCrossoverRate();
+
         genotypeSize = params.getGenotypeSize();
     }
 
@@ -33,8 +38,10 @@ public class GeneticAlgorithm {
 
         Population newPopulation=pop;
         TransformationInterface transformations[] = {
-            new BasicCrossover(crossoverRate, elitismOffset, tournamentSize, fitnessCalculator, genotypeSize),
-            new BasicMutation(mutationRate, elitismOffset, fitnessCalculator, genotypeSize)
+            new BasicCrossover(basicCrossoverRate, elitismOffset, tournamentSize, fitnessCalculator, genotypeSize),
+            new BasicMutation(basicMutationRate, elitismOffset, fitnessCalculator, genotypeSize),
+            new SinglePointCrossover(singlePointCrossoverRate),
+            new SingleMutation(singleMutationRate)
         };
 
         for (TransformationInterface transformation : transformations) {
