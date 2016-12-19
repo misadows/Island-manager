@@ -7,7 +7,7 @@ public class GeneticAlgorithm {
     private int tournamentSize;
     private boolean elitism;
 
-    private void setParameters(IslandParams params){
+    public void setParameters(IslandParams params){
         crossoverRate = params.getCrossoverRate();
         mutationRate = params.getMutationRate();
         tournamentSize = params.getTournamentSize();

@@ -11,7 +11,7 @@ public class Population {
         fitnessCalculator.setSolution("111000011010101010000111010");
     }
 
-    private void fillPopulation(int populationSize){
+    public void fillPopulation(int populationSize){
         for(int i=0; i<populationSize; i++){
             creatures.add(new Creature());
         }

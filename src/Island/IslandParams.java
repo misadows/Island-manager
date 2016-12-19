@@ -10,6 +10,15 @@ public class IslandParams {
     private int tournamentSize;
     private boolean elitism;
 
+    public IslandParams(int creaturesNumber, double migrationRate, double crossoverRate, double mutationRate, int tournamentSize, boolean elitism){
+        this.creaturesNumber=creaturesNumber;
+        this.migrationRate=migrationRate;
+        this.crossoverRate=crossoverRate;
+        this.mutationRate=mutationRate;
+        this.tournamentSize=tournamentSize;
+        this.elitism=elitism;
+    }
+
 
     public boolean isElitism() {
         return elitism;
@@ -23,7 +32,6 @@ public class IslandParams {
         this.tournamentSize = tournamentSize;
     }
 
-
     public double getCrossoverRate() {
         return crossoverRate;
     }
@@ -31,7 +39,6 @@ public class IslandParams {
     public double getMutationRate() {
         return mutationRate;
     }
-
 
     public int getCreaturesNumber() {
         return creaturesNumber;

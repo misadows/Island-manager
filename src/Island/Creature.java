@@ -26,4 +26,13 @@ public class Creature {
     public int genotypeSize() {
         return genes.length;
     }
+
+    @Override
+    public String toString() {
+        String geneString = "";
+        for (int i = 0; i < genotypeSize(); i++) {
+            geneString += getGene(i);
+        }
+        return geneString;
+    }
 }
