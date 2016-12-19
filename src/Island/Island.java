@@ -39,7 +39,7 @@ public class Island implements IslandInterface{
 
     @Override
     public void nextEpoch(){
-        population= geneticAlgorithm.evolvePopulation(population);
+        population=geneticAlgorithm.evolvePopulation(population);
         System.out.println("Fittest: " + population.getFittest() +" "+ fitnessCalculator.getFitness(population.getFittest()));
 
     }

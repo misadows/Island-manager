@@ -1,6 +1,10 @@
 package Island;
 
 
+import Island.Transformation.BasicCrossover;
+import Island.Transformation.BasicMutation;
+import Island.Transformation.TransformationInterface;
+
 public class GeneticAlgorithm {
     private double crossoverRate;
     private double mutationRate;
@@ -23,63 +27,24 @@ public class GeneticAlgorithm {
     }
 
     public Population evolvePopulation(Population pop) {
-        Population newPopulation = new Population(pop.populationSize(), fitnessCalculator, genotypeSize);
-
-        if (elitism) {
-            newPopulation.saveCreature(0, pop.getFittest());
-        }
-
         int elitismOffset;
-        if (elitism) {
-            elitismOffset = 1;
-        } else {
-            elitismOffset = 0;
-        }
+        if(elitism)  elitismOffset = 1;
+        else elitismOffset = 0;
 
-        for (int i = elitismOffset; i < pop.populationSize(); i++) {
-            Creature indiv1 = tournamentSelection(pop);
-            Creature indiv2 = tournamentSelection(pop);
-            Creature newIndiv = crossover(indiv1, indiv2);
-            newPopulation.saveCreature(i, newIndiv);
-        }
+        Population newPopulation=pop;
+        TransformationInterface transformations[] = {
+            new BasicCrossover(crossoverRate, elitismOffset, tournamentSize, fitnessCalculator, genotypeSize),
+            new BasicMutation(mutationRate, elitismOffset, fitnessCalculator, genotypeSize)
+        };
 
-        for (int i = elitismOffset; i < newPopulation.populationSize(); i++) {
-            mutate(newPopulation.getCreature(i));
+        for (TransformationInterface transformation : transformations) {
+            newPopulation = transformation.transform(newPopulation);
         }
 
         return newPopulation;
     }
 
-    private Creature crossover(Creature indiv1, Creature indiv2) {
-        Creature newSol = new Creature(genotypeSize);
 
-        for (int i = 0; i < indiv1.genotypeSize(); i++) {
 
-            if (Math.random() <= crossoverRate) {
-                newSol.setGene(i, indiv1.getGene(i));
-            } else {
-                newSol.setGene(i, indiv2.getGene(i));
-            }
-        }
-        return newSol;
-    }
 
-    private void mutate(Creature indiv) {
-        for (int i = 0; i < indiv.genotypeSize(); i++) {
-            if (Math.random() <= mutationRate) {
-                byte gene = (byte) Math.round(Math.random());
-                indiv.setGene(i, gene);
-            }
-        }
-    }
-
-    private Creature tournamentSelection(Population pop) {
-        Population tournament = new Population(tournamentSize, fitnessCalculator, genotypeSize);
-        for (int i = 0; i < tournamentSize; i++) {
-            int randomId = (int) (Math.random() * pop.populationSize());
-            tournament.saveCreature(i, pop.getCreature(randomId));
-        }
-
-        return tournament.getFittest();
-    }
 }
