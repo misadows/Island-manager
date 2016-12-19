@@ -1,6 +1,7 @@
 package Topology;
 
 
+import Island.Creature;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class Migration
     {
         this.where = where;
         this.from = from;
-        for(Creature island : creatures) this.creatures.add(creature);
+        //for(Creature island : creatures) this.creatures.add(creature);
     }
 
     public void doMigration()
