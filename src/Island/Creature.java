@@ -7,6 +7,12 @@ public class Creature {
     public Creature(int genotypeSize){
         generateRandomGenotype(genotypeSize);
     }
+    public Creature(Creature c){
+        genes = new byte[c.genotypeSize()];
+        for(int i=0; i<c.genotypeSize(); i++){
+            genes[i] = c.getGene(i);
+        }
+    }
 
     private void generateRandomGenotype(int genotypeLength){
         genes = new byte[genotypeLength];

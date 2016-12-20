@@ -25,7 +25,7 @@ public class SingleMutation implements TransformationInterface{
         return newPopulation;
     }
 
-    private void mutate(Creature indiv) {
+    public void mutate(Creature indiv) {
         for (int i = 0; i < indiv.genotypeSize(); i++) {
             if (Math.random() <= rate) {
                 byte gene = (byte) Math.round(Math.random());
