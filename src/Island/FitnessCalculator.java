@@ -8,7 +8,7 @@ public class FitnessCalculator {
         solution = newSolution;
     }
 
-    void setSolution(String newSolution) {
+    public void setSolution(String newSolution) {
         solution = new byte[newSolution.length()];
 
 
@@ -22,7 +22,7 @@ public class FitnessCalculator {
         }
     }
 
-    int getFitness(Creature creature) {
+    public int getFitness(Creature creature) {
         int fitness = 0;
 
         for (int i = 0; i < creature.genotypeSize() && i < solution.length; i++) {
@@ -33,7 +33,7 @@ public class FitnessCalculator {
         return fitness;
     }
 
-    int getTargetSolution() {
+    public int getTargetSolution() {
         return solution.length;
     }
 }

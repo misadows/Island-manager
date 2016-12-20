@@ -42,7 +42,7 @@ public class BasicCrossover implements TransformationInterface{
         return newPopulation;
     }
 
-    private Creature crossover(Creature indiv1, Creature indiv2) {
+    public Creature crossover(Creature indiv1, Creature indiv2) {
         Creature newSol = new Creature(genotypeSize);
 
         for (int i = 0; i < indiv1.genotypeSize(); i++) {
@@ -56,7 +56,7 @@ public class BasicCrossover implements TransformationInterface{
         return newSol;
     }
 
-    private Creature tournamentSelection(Population pop) {
+    public Creature tournamentSelection(Population pop) {
         Population tournament = new Population(tournamentSize, fitnessCalculator, genotypeSize);
         for (int i = 0; i < tournamentSize; i++) {
             int randomId = (int) (Math.random() * pop.populationSize());
