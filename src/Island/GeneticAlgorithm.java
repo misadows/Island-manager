@@ -39,9 +39,9 @@ public class GeneticAlgorithm {
         Population newPopulation=pop;
         TransformationInterface transformations[] = {
             new BasicCrossover(basicCrossoverRate, elitismOffset, tournamentSize, fitnessCalculator, genotypeSize),
-            new BasicMutation(basicMutationRate, elitismOffset, fitnessCalculator, genotypeSize),
+            new BasicMutation(basicMutationRate, elitismOffset),
             new SinglePointCrossover(singlePointCrossoverRate),
-            new SingleMutation(singleMutationRate)
+            new SingleMutation(singleMutationRate, elitismOffset)
         };
 
         for (TransformationInterface transformation : transformations) {

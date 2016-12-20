@@ -7,14 +7,10 @@ import Island.Population;
 
 public class BasicMutation implements TransformationInterface{
     private double rate;
-    private FitnessCalculator fitnessCalculator;
-    private int genotypeSize;
     private int elitismOffset;
 
-    public BasicMutation(double rate, int elitismOffset, FitnessCalculator fitnessCalculator, int genotypeSize){
+    public BasicMutation(double rate, int elitismOffset){
         setRate(rate);
-        this.fitnessCalculator=fitnessCalculator;
-        this.genotypeSize=genotypeSize;
         this.elitismOffset=elitismOffset;
     }
 
