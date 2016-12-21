@@ -1,235 +1,203 @@
 package Visualisation;
 
-
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import Island.IslandParams;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-import java.util.ResourceBundle;
+import java.util.ArrayList;
+import java.util.List;
 
-
-
-
-public  class ConfigurationMenuController {
+public class ConfigurationMenuController {
+    int[][][] TOPOLOGY = new int[][][]{
+            {
+                    {0, 1, 1, 1},
+                    {1, 0, 1, 1},
+                    {1, 1, 0, 1},
+                    {1, 1, 1, 0}
+            },
+            {
+                    {0, 1, 0, 0},
+                    {0, 0, 1, 0},
+                    {0, 0, 0, 1},
+                    {1, 0, 0, 0}
+            },
+            {
+                    {0, 1, 0, 0},
+                    {1, 0, 0, 0},
+                    {1, 0, 0, 1},
+                    {0, 1, 1, 0}
+            },
+            {
+                    {0, 1, 1, 0},
+                    {1, 0, 0, 1},
+                    {1, 0, 0, 1},
+                    {0, 1, 1, 0}
+            }
+    };
     private MainApp mainApp;
+    private TopologyParams topology;
+    private List<IslandParams> islands;
 
-    /*** AUTOMATIC INJECTION ***/
+    ToggleGroup group = new ToggleGroup();
 
-    @FXML
-    private ResourceBundle resources;
-
-    //labels
-    @FXML
-    private Label topologyLabel, functionLabel, minimumLabel, maximumLabel, startingPoulation1Label, startingPoulation2Label,startingPoulation3Label,startingPoulation4Label,  crossover1Label, crossover2Label, crossover3Label, crossover4Label, mutation1Label, mutation2Label, mutation3Label, mutation4Label, generations1Label, generations2Label, generations3Label, generations4Label, tournament1SelectionLabel, tournament2SelectionLabel, tournament3SelectionLabel, tournament4SelectionLabel, migrationInterval1Label, migrationInterval2Label, migrationInterval3Label, migrationInterval4Label, migrationRate1Label, migrationRate2Label, migrationRate3Label, migrationRate4Label;
-
-
-    //radio buttons
     @FXML
     private RadioButton unidirectionalCircleRadioButton, eachOfEachRadioButton, ladderRadioButton, bidirectionalCircleRadioButton;
 
-    //imageViews
     @FXML
-    private ImageView eachOfEachImageView, bidirectionalCircleImageView, ladderImageView, unidirectionalCircleImageView;
+    private TextField generationsTextField;
 
-    //split menu button
     @FXML
     private SplitMenuButton functionsSplitMenuButton;
 
-    //tabs
     @FXML
-    private Tab islandITab, islandIITab, islandIIITab, islandIVTab;
+    private TextField minimumDomainTextField, maximumDomainTextField;
 
-    //text fields
     @FXML
-    private TextField minimumTextField, maximumTextField, startingPopulation1TextField, startingPopulation2TextField, startingPopulation3TextField, startingPopulation4TextField, generations1TextField, generations2TextField, generations3TextField, generations4TextField, migrationRateText1Field, migrationRateText2Field, migrationRateText3Field, migrationRateText4Field;
+    private TextField startingPopulation1TextField, startingPopulation2TextField,
+            startingPopulation3TextField, startingPopulation4TextField;
 
-    //text areas
     @FXML
-    private TextArea minimumTextArea, maximumTextArea, startingPopulation1TextArea, startingPopulation2TextArea, startingPopulation3TextArea, startingPopulation4TextArea, generations1TextArea, generations2TextArea, generations3TextArea, generations4TextArea, migrationRate1TextArea, migrationRate2TextArea, migrationRate3TextArea, migrationRate4TextArea ;
-    @FXML
-    private TextArea outputTextArea;
+    private Slider basicCrossover1Slider, basicCrossover2Slider,
+            basicCrossover3Slider, basicCrossover4Slider;
 
-    //sliders
     @FXML
-    private Slider mutation1Slider, mutation2Slider, mutation3Slider, mutation4Slider, tournament1SelectionSlider, tournament2SelectionSlider, tournament3SelectionSlider, tournament4SelectionSlider, migrationInterval1Slider, migrationInterval2Slider, migrationInterval3Slider, migrationInterval4Slider;
+    private Slider basicMutation1Slider, basicMutation2Slider,
+            basicMutation3Slider, basicMutation4Slider;
 
-    //checkboxs
     @FXML
-    private CheckBox elitism1CheckBox, elitism2CheckBox, elitism3CheckBox, elitism4CheckBox;
+    private Slider singlePointCrossover1Slider, singlePointCrossover2Slider,
+            singlePointCrossover3Slider, singlePointCrossover4Slider;
 
-    //progress bar
     @FXML
-    private ProgressBar oneProgressBar;
+    private Slider singlePointMutation1Slider, singlePointMutation2Slider,
+            singlePointMutation3Slider,singlePointMutation4Slider;
 
-    //buttons
+    @FXML
+    private Slider migrationRate1Slider, migrationRate2Slider,
+            migrationRate3Slider, migrationRate4Slider;
+
+    @FXML
+    private TextField tournamentSize1TextField, tournamentSize2TextField,
+            tournamentSize3TextField, tournamentSize4TextField;
+
+    @FXML
+    private CheckBox elitism1CheckBox, elitism2CheckBox,
+            elitism3CheckBox, elitism4CheckBox;
+
+    @FXML
+    private ProgressBar progressBar;
+
     @FXML
     private Button startButton, cancelButton;
 
     @FXML
     private void handleStartButtonAction() {
-        // Button was clicked, start action ...
+        if(validate_configuration()) {
+            setParams();
+        }
 
+        // TO DO
+        // Get all data from the form +
+        // Validate inputs - make tests
+        // What if user don't input all data, set default or show error?!
+        // Make functionSplitMenu working
+        // Implement "targetSolution -> pass function -> Make functionSplitMenu working
+        // Freeze configuration
+        // Refactor field names
+    }
+
+    private void setParams() {
+        setIsland(Integer.parseInt(startingPopulation1TextField.getText()),
+                basicCrossover1Slider.getValue(),
+                basicMutation1Slider.getValue(),
+                singlePointCrossover1Slider.getValue(),
+                singlePointMutation1Slider.getValue(),
+                migrationRate1Slider.getValue(),
+                Integer.parseInt(tournamentSize1TextField.getText()),
+                elitism1CheckBox.isSelected(), "Funkcja"
+        );
+
+        setIsland(Integer.parseInt(startingPopulation2TextField.getText()),
+                basicCrossover2Slider.getValue(),
+                basicMutation2Slider.getValue(),
+                singlePointCrossover2Slider.getValue(),
+                singlePointMutation2Slider.getValue(),
+                migrationRate2Slider.getValue(),
+                Integer.parseInt(tournamentSize2TextField.getText()),
+                elitism2CheckBox.isSelected(), "Funkcja"
+        );
+
+        setIsland(Integer.parseInt(startingPopulation3TextField.getText()),
+                basicCrossover3Slider.getValue(),
+                basicMutation3Slider.getValue(),
+                singlePointCrossover3Slider.getValue(),
+                singlePointMutation3Slider.getValue(),
+                migrationRate3Slider.getValue(),
+                Integer.parseInt(tournamentSize3TextField.getText()),
+                elitism3CheckBox.isSelected(), "Funkcja"
+        );
+
+        setIsland(Integer.parseInt(startingPopulation4TextField.getText()),
+                basicCrossover4Slider.getValue(),
+                basicMutation4Slider.getValue(),
+                singlePointCrossover4Slider.getValue(),
+                singlePointMutation4Slider.getValue(),
+                migrationRate4Slider.getValue(),
+                Integer.parseInt(tournamentSize4TextField.getText()),
+                elitism4CheckBox.isSelected(), "Funkcja"
+        );
+
+        setTopology(islands, TOPOLOGY[(Integer)group.getSelectedToggle().getUserData()],
+                Integer.parseInt(generationsTextField.getText()));
+    }
+
+    public void setTopology(List<IslandParams> islands, int[][] connections, int generations) {
+        this.topology = new TopologyParams(islands, connections, generations);
+    }
+
+    public void setIsland(int creaturesNumber, double migrationRate, double basicCrossoverRate, double basicMigrationRate,
+                          double singlePointCrossoverRate, double singleMutationRate, int tournamentSize,
+                          boolean elitism, String targetSolution) {
+        this.islands.add(new IslandParams(creaturesNumber, migrationRate, basicCrossoverRate, basicMigrationRate,
+                singlePointCrossoverRate, singleMutationRate, tournamentSize, elitism, targetSolution));
+    }
+
+    private boolean validate_configuration() {
+        System.out.println("It would validate configuration form ...");
+        return true;
     }
 
     @FXML
     private void handleCancelButtonAction() {
-        // Button was clicked, stop action ...
+        System.out.println("Button was clicked, stop action ...");
 
     }
+
 
     public ConfigurationMenuController() {
 
     }
 
     @FXML
-    public void initialize() {
-
-        //handle simple buttons
-        startButton.setOnAction((event) -> {
-            // Button was clicked, do something...
-            outputTextArea.appendText("Button Start\n");
-        });
-        cancelButton.setOnAction((event) -> {
-            // Button was clicked, do something...
-            outputTextArea.appendText("Button Canceled\n");
-        });
-
-        //hadle checkbuttons
-        unidirectionalCircleRadioButton.setOnAction((event) -> {
-            boolean selected = unidirectionalCircleRadioButton.isSelected();
-            System.out.println("unidirectionalCircleRadioButton (selected: " + selected + ")");
-        });
-        eachOfEachRadioButton.setOnAction((event) -> {
-            boolean selected = eachOfEachRadioButton.isSelected();
-            System.out.println("eachOfEachRadioButton (selected: " + selected + ")");
-        });
-        ladderRadioButton.setOnAction((event) -> {
-            boolean selected = ladderRadioButton.isSelected();
-            System.out.println("ladderRadioButton (selected: " + selected + ")");
-        });
-        bidirectionalCircleRadioButton.setOnAction((event) -> {
-            boolean selected = bidirectionalCircleRadioButton.isSelected();
-            System.out.println("bidirectionalCircleRadioButton (selected: " + selected + ")");
-        });
+    private void initialize() {
+        bidirectionalCircleRadioButton.setToggleGroup(group);
+        unidirectionalCircleRadioButton.setToggleGroup(group);
+        eachOfEachRadioButton.setToggleGroup(group);
+        ladderRadioButton.setToggleGroup(group);
+        bidirectionalCircleRadioButton.setUserData(1);
+        unidirectionalCircleRadioButton.setUserData(2);
+        eachOfEachRadioButton.setUserData(3);
+        ladderRadioButton.setUserData(4);
+        islands = new ArrayList<IslandParams>();
 
 
-        // Handle CheckBox event
-        elitism1CheckBox.setOnAction((event) -> {
-            boolean selected = elitism1CheckBox.isSelected();
-            System.out.println("CheckBox Action (selected: " + selected + ")");
-        });
-
-        elitism2CheckBox.setOnAction((event) -> {
-            boolean selected = elitism2CheckBox.isSelected();
-            System.out.println("elitism2CheckBox Action (selected: " + selected + ")");
-        });
-
-        elitism3CheckBox.setOnAction((event) -> {
-            boolean selected = elitism3CheckBox.isSelected();
-            System.out.println("elitism3CheckBoxAction (selected: " + selected + ")");
-        });
-
-        elitism4CheckBox.setOnAction((event) -> {
-            boolean selected = elitism4CheckBox.isSelected();
-            System.out.println("elitism4CheckBox (selected: " + selected + ")");
-        });
-
-        //handle image views
-        eachOfEachImageView.setImage(new Image ("Images/EachOfEach.jpg"));
-        bidirectionalCircleImageView.setImage(new Image ("Images/BidirectionalCircle.jpg"));
-        ladderImageView.setImage(new Image ("Images/Ladder.jpg"));
-        unidirectionalCircleImageView.setImage(new Image ("Images/UnidirectionalCircle.jpg"));
-        IntegerProperty count = new SimpleIntegerProperty();
-        //handle split menu button
-        functionsSplitMenuButton.showingProperty().addListener((obs, wasShowing, isNowShowing) -> {
-            if (isNowShowing) {
-                int c = count.get() + 1;
-                count.set(c);
-                functionsSplitMenuButton.getItems().clear();
-                for (int choice = 1; choice <= 3; choice++) {
-                    MenuItem mi = new MenuItem("Choice "+choice+" (" + c + ")");
-                    functionsSplitMenuButton.getItems().add(mi);
-                }
-            }
-        });
-
-        // Handle Slider value change events.
-        mutation1Slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Mutation slider Value Changed (newValue: " + newValue.intValue() + ")");
-        });
-        mutation2Slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Mutation slider Value Changed (newValue: " + newValue.intValue() + ")");
-        });
-        mutation3Slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Mutation slider Value Changed (newValue: " + newValue.intValue() + ")");
-        });
-        mutation4Slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Mutation slider Value Changed (newValue: " + newValue.intValue() + ")");
-        });
-        tournament1SelectionSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Tournament slider Value Changed (newValue: " + newValue.intValue() + ")");
-        });
-        tournament2SelectionSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Tournament slider Value Changed (newValue: " + newValue.intValue() + ")");
-        });
-        tournament3SelectionSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Tournament slider Value Changed (newValue: " + newValue.intValue() + ")");
-        });
-        tournament4SelectionSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Tournament slider Value Changed (newValue: " + newValue.intValue() + ")");
-        });
-        migrationInterval1Slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Migration interval slider Value Changed (newValue: " + newValue.intValue() + ")");
-        });
-        migrationInterval2Slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Migration interval slider  Value Changed (newValue: " + newValue.intValue() + ")");
-        });
-
-        migrationInterval3Slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Migration interval slider Value Changed (newValue: " + newValue.intValue() + ")");
-        });
-
-        migrationInterval4Slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Migration interval slider  Value Changed (newValue: " + newValue.intValue() + ")");
-        });
+        //TO DO
+        // Ask about default min and max for this values and set sliders
 
 
-        //handle text field and areas
-        printOutput();
-
-        //handle progress bar
-        oneProgressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
-
-        //tab and labels need to be implemented
 
 
     }
-
-    //
-    //setting text into right areas
-    @FXML
-    public void printOutput() {
-        minimumTextArea.setText(minimumTextField.getText());
-        maximumTextArea.setText(maximumTextField.getText());
-        startingPopulation1TextArea.setText(startingPopulation1TextField.getText());
-        startingPopulation2TextArea.setText(startingPopulation2TextField.getText());
-        startingPopulation3TextArea.setText(startingPopulation3TextField.getText());
-        startingPopulation4TextArea.setText(startingPopulation4TextField.getText());
-        generations1TextArea.setText(generations1TextField.getText());
-        generations2TextArea.setText(generations2TextField.getText());
-        generations3TextArea.setText(generations3TextField.getText());
-        generations4TextArea.setText(generations4TextField.getText());
-        migrationRate1TextArea.setText(migrationRateText1Field.getText());
-        migrationRate2TextArea.setText(migrationRateText2Field.getText());
-        migrationRate3TextArea.setText(migrationRateText3Field.getText());
-        migrationRate4TextArea.setText(migrationRateText4Field.getText());
-
-    }
-
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;

@@ -9,9 +9,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * Created by Yoshimori on 05/12/2016.
- */
 public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
