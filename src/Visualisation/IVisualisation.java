@@ -5,9 +5,6 @@ import Model.Result;
 
 import java.util.List;
 
-/**
- * Created by Yoshimori on 05/12/2016.
- */
 public interface IVisualisation {
     public static final int ISLAND_NUMBER = 4;
 
