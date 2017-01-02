@@ -1,6 +1,7 @@
 package Visualisation;
 
 import Island.IslandParams;
+import Topology.TopologyParams;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigurationMenuController {
+    boolean a=true; // flaga
     int[][][] TOPOLOGY = new int[][][]{
             {
                     {0, 1, 1, 1},
@@ -92,18 +94,21 @@ public class ConfigurationMenuController {
 
     @FXML
     private void handleStartButtonAction() {
-        if(validate_configuration()) {
+        minTextFieldValidation();
+        maxTextFieldValidation();
+        TextField [] tab = {startingPopulation1TextField, startingPopulation2TextField,startingPopulation3TextField,startingPopulation4TextField,
+                tournamentSize1TextField, tournamentSize2TextField, tournamentSize3TextField, tournamentSize4TextField};
+
+        for(int i=0; i<tab.length; i++){
+            if ( ! (tab[i].getText().length()>=1 && Character.isDigit(tab[i].getText().charAt(0)))) {
+                System.out.println("Podana liczba musi nalezec do liczb naturalnych !");
+                a=false;
+            }
+        }
+        if(validate_configuration(a)) {
             setParams();
         }
 
-        // TO DO
-        // Get all data from the form +
-        // Validate inputs - make tests
-        // What if user don't input all data, set default or show error?!
-        // Make functionSplitMenu working
-        // Implement "targetSolution -> pass function -> Make functionSplitMenu working
-        // Freeze configuration
-        // Refactor field names
     }
 
     private void setParams() {
@@ -145,10 +150,12 @@ public class ConfigurationMenuController {
                 migrationRate4Slider.getValue(),
                 Integer.parseInt(tournamentSize4TextField.getText()),
                 elitism4CheckBox.isSelected(), "Funkcja"
+
         );
 
         setTopology(islands, TOPOLOGY[(Integer)group.getSelectedToggle().getUserData()],
                 Integer.parseInt(generationsTextField.getText()));
+
     }
 
     public void setTopology(List<IslandParams> islands, int[][] connections, int generations) {
@@ -162,9 +169,34 @@ public class ConfigurationMenuController {
                 singlePointCrossoverRate, singleMutationRate, tournamentSize, elitism, targetSolution));
     }
 
-    private boolean validate_configuration() {
-        System.out.println("It would validate configuration form ...");
-        return true;
+    private void minTextFieldValidation(){
+        //checking if it's natural number
+        if ( (minimumDomainTextField.getText().length()>=1 && Character.isDigit(minimumDomainTextField.getText().charAt(0))))
+            Integer.parseInt(minimumDomainTextField.getText());
+        else
+            System.out.println("Podana liczba musi nalezec do liczb naturalnych !");
+            a=false;
+
+
+    }
+
+    private void maxTextFieldValidation(){
+        //checking if it is natural number and > than minimum
+        if ( (maximumDomainTextField.getText().length()>=1 && Character.isDigit(maximumDomainTextField.getText().charAt(0)))&&Integer.parseInt(maximumDomainTextField.getText())>Integer.parseInt(minimumDomainTextField.getText()))
+            Integer.parseInt(maximumDomainTextField.getText());
+        else {
+            System.out.println("Podana liczba musi nalezec do liczb naturalnych i być wieksza od minimum!");
+            a=false;
+        }
+
+
+    }
+
+
+    private boolean validate_configuration(boolean x) {
+
+            return x;
+
     }
 
     @FXML
@@ -189,12 +221,6 @@ public class ConfigurationMenuController {
         eachOfEachRadioButton.setUserData(3);
         ladderRadioButton.setUserData(4);
         islands = new ArrayList<IslandParams>();
-
-
-        //TO DO
-        // Ask about default min and max for this values and set sliders
-
-
 
 
     }
