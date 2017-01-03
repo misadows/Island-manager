@@ -1,0 +1,20 @@
+Testy:
+-Funkcjonalne 
+	+ Jednostkowe
+	+ Integracyjne
+	+ Systemowe 
+	+ Akceptacyjne
+		* alfa
+		* beta
+-Niefunkcjonalne
+	+ bezpieczeństwo
+	+ ergonomia
+	+ wydajnośc
+
+Jednostkowe
+- weryfikacja
+- przypadki brzegowe
+- puste elementy
+
+Napisać testy akceptacyjne.
+Żeby uruchomić symulacje, to musimy klinknąć to, nastepnie to itd.

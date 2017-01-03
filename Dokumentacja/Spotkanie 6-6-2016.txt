@@ -1,0 +1,20 @@
+Faza I Construction
+- stworzenie GUI'a do ustawiania parametrów
+ * stworzenie GUI'a dla topologi
+ 	+ wybór topologi
+ * wspólne parametry dla wszystkich wysp
+ 	+ wybor funkcji
+ 	+ wybor przedzialu rozwiazania
+ * parametry dla każdej z wysp
+	+ operator mutacji, operator krzyżowania
+	+ liczba osobników
+	+ prawdopodobieństwo mutacji
+	+ stopień migracji??
+	+ liczba generacji
+- stworzenie GUIDataProvider który bd ściaągł z GUI te wszystkie parametry i przesyłał do Viusalisation
+- stworzenie GUICOntrollera który bd odpowiedzialny(w tej chwili okienkoa aplikacji)
+- implementacja Visualisation która tworzy modele i przesyła do komponentów
+
+Faza II Construction
+- odebranie wyników przebiegu algorytmu i ich wizualizacja(animacja)
+- stworzenie wykresów dla każdej wyspy
