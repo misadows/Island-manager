@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigurationMenuController {
-    boolean a=true; // flaga
+    boolean a = true; // flaga
     int[][][] TOPOLOGY = new int[][][]{
             {
                     {0, 1, 1, 1},
@@ -102,10 +102,10 @@ public class ConfigurationMenuController {
         for(int i=0; i<tab.length; i++){
             if ( ! (tab[i].getText().length()>=1 && Character.isDigit(tab[i].getText().charAt(0)))) {
                 System.out.println("Podana liczba musi nalezec do liczb naturalnych !");
-                a=false;
+                a = false;
             }
         }
-        if(validate_configuration(a)) {
+        if(a) {
             setParams();
         }
 
@@ -175,7 +175,7 @@ public class ConfigurationMenuController {
             Integer.parseInt(minimumDomainTextField.getText());
         else
             System.out.println("Podana liczba musi nalezec do liczb naturalnych !");
-            a=false;
+            a = false;
 
 
     }
@@ -186,16 +186,9 @@ public class ConfigurationMenuController {
             Integer.parseInt(maximumDomainTextField.getText());
         else {
             System.out.println("Podana liczba musi nalezec do liczb naturalnych i być wieksza od minimum!");
-            a=false;
+            a = false;
         }
 
-
-    }
-
-
-    private boolean validate_configuration(boolean x) {
-
-            return x;
 
     }
 
@@ -212,18 +205,18 @@ public class ConfigurationMenuController {
 
     @FXML
     private void initialize() {
-        bidirectionalCircleRadioButton.setToggleGroup(group);
-        unidirectionalCircleRadioButton.setToggleGroup(group);
-        eachOfEachRadioButton.setToggleGroup(group);
-        ladderRadioButton.setToggleGroup(group);
-        bidirectionalCircleRadioButton.setUserData(1);
-        unidirectionalCircleRadioButton.setUserData(2);
-        eachOfEachRadioButton.setUserData(3);
-        ladderRadioButton.setUserData(4);
-        islands = new ArrayList<IslandParams>();
+    bidirectionalCircleRadioButton.setToggleGroup(group);
+    unidirectionalCircleRadioButton.setToggleGroup(group);
+    eachOfEachRadioButton.setToggleGroup(group);
+    ladderRadioButton.setToggleGroup(group);
+    bidirectionalCircleRadioButton.setUserData(1);
+    unidirectionalCircleRadioButton.setUserData(2);
+    eachOfEachRadioButton.setUserData(3);
+    ladderRadioButton.setUserData(4);
+   // islands = new ArrayList<IslandParams>();
 
 
-    }
+}
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
