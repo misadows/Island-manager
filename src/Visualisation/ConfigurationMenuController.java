@@ -1,11 +1,9 @@
 package Visualisation;
 
 import Island.IslandParams;
-import Topology.TopologyParams;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigurationMenuController {
@@ -37,7 +35,7 @@ public class ConfigurationMenuController {
             }
     };
     private MainApp mainApp;
-    private TopologyParams topology;
+    //private TopologyParams topology;
     private List<IslandParams> islands;
 
     ToggleGroup group = new ToggleGroup();
@@ -159,14 +157,14 @@ public class ConfigurationMenuController {
     }
 
     public void setTopology(List<IslandParams> islands, int[][] connections, int generations) {
-        this.topology = new TopologyParams(islands, connections, generations);
+        //this.topology = new TopologyParams(islands, connections, generations);
     }
 
     public void setIsland(int creaturesNumber, double migrationRate, double basicCrossoverRate, double basicMigrationRate,
                           double singlePointCrossoverRate, double singleMutationRate, int tournamentSize,
                           boolean elitism, String targetSolution) {
-        this.islands.add(new IslandParams(creaturesNumber, migrationRate, basicCrossoverRate, basicMigrationRate,
-                singlePointCrossoverRate, singleMutationRate, tournamentSize, elitism, targetSolution));
+        //this.islands.add(new IslandParams(creaturesNumber, migrationRate, basicCrossoverRate, basicMigrationRate,
+                //singlePointCrossoverRate, singleMutationRate, tournamentSize, elitism, targetSolution));
     }
 
     private void minTextFieldValidation(){

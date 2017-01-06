@@ -1,22 +1,20 @@
 package Visualisation;
 
-import Island.EpochResult;
+//import Island.EpochResult;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import javafx.stage.Modality;
-
+import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
-    ArrayList<EpochResult> ep;
+    //ArrayList<EpochResult> ep;
 
     public MainApp() {
         //Initialization some sample data
@@ -84,7 +82,7 @@ public class MainApp extends Application {
 
             // Set the island into the controller
             ChartsController controller = loader.getController();
-            controller.setResultsData(ep);
+            //controller.setResultsData(ep);
 
             dialogStage.show();
 
