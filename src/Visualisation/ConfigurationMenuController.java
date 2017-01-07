@@ -181,29 +181,29 @@ public class ConfigurationMenuController {
 
     @FXML
     private void initialize() throws IOException {
-    alert.setTitle("Error in form configuration");
-    //Default configuration:
-    startingPopulation = 1000;
-    tournamentSize = 10;
-    basicCrossover = 0.1;
-    basicMutation = 0.1;
-    singlePointCrossover = 0.1;
-    singlePointMutation = 0.1;
-    migrationRate = 0.1;
-    elitism = true;
+        alert.setTitle("Error in form configuration");
+        //Default configuration:
+        startingPopulation = 1000;
+        tournamentSize = 10;
+        basicCrossover = 0.1;
+        basicMutation = 0.1;
+        singlePointCrossover = 0.1;
+        singlePointMutation = 0.1;
+        migrationRate = 0.1;
+        elitism = true;
 
-    bidirectionalCircleRadioButton.setToggleGroup(group);
-    unidirectionalCircleRadioButton.setToggleGroup(group);
-    eachOfEachRadioButton.setToggleGroup(group);
-    ladderRadioButton.setToggleGroup(group);
-    bidirectionalCircleRadioButton.setUserData(0);
-    unidirectionalCircleRadioButton.setUserData(1);
-    eachOfEachRadioButton.setUserData(2);
-    ladderRadioButton.setUserData(3);
+        bidirectionalCircleRadioButton.setToggleGroup(group);
+        unidirectionalCircleRadioButton.setToggleGroup(group);
+        eachOfEachRadioButton.setToggleGroup(group);
+        ladderRadioButton.setToggleGroup(group);
+        bidirectionalCircleRadioButton.setUserData(0);
+        unidirectionalCircleRadioButton.setUserData(1);
+        eachOfEachRadioButton.setUserData(2);
+        ladderRadioButton.setUserData(3);
 
-    for(Tab tab : tabPane.getTabs()){
-        tab.setContent((AnchorPane) FXMLLoader.load(this.getClass().getResource("Tab.fxml")));
-    }
+        for(Tab tab : tabPane.getTabs()){
+            tab.setContent((AnchorPane) FXMLLoader.load(this.getClass().getResource("Tab.fxml")));
+        }
 }
 
     public void setMainApp(MainApp mainApp) {
