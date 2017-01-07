@@ -40,7 +40,7 @@ public class GeneticAlgorithm {
         TransformationInterface transformations[] = {
             new BasicCrossover(basicCrossoverRate, elitismOffset, tournamentSize, fitnessCalculator, genotypeSize),
             new BasicMutation(basicMutationRate, elitismOffset),
-            new SinglePointCrossover(singlePointCrossoverRate),
+                new BasicCrossover(singlePointCrossoverRate, elitismOffset, tournamentSize, fitnessCalculator, genotypeSize),
             new SingleMutation(singleMutationRate, elitismOffset)
         };
 

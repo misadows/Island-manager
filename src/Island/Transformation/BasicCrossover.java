@@ -29,7 +29,7 @@ public class BasicCrossover implements TransformationInterface{
         Population newPopulation = new Population(population.populationSize(), fitnessCalculator, genotypeSize);
 
         for(int i=0; i<elitismOffset && i<population.populationSize(); i++){
-            newPopulation.saveCreature(i, population.getFittest()); //to fix (not only fittest)
+            newPopulation.saveCreature(i, population.getFittest());
         }
 
         for (int i = elitismOffset; i < population.populationSize(); i++) {

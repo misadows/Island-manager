@@ -17,7 +17,6 @@ public class SingleMutation implements TransformationInterface{
     public Population transform(Population population) {
         Population newPopulation = population;
 
-        //fix problem with elitism - sort
         for (int i = elitismOffset; i < newPopulation.populationSize(); i++) {
             mutate(newPopulation.getCreature(i));
         }
