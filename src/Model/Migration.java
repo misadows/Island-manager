@@ -11,4 +11,20 @@ public class Migration {
         this.fromIsland = fromIsland;
         this.toIsland = toIsland;
     }
+
+    public int getToIsland() {
+        return toIsland;
+    }
+
+    public void setToIsland(int toIsland) {
+        this.toIsland = toIsland;
+    }
+
+    public int getFromIsland() {
+        return fromIsland;
+    }
+
+    public void setFromIsland(int fromIsland) {
+        this.fromIsland = fromIsland;
+    }
 }

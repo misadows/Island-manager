@@ -1,18 +1,21 @@
 package Model;
 
+import Island.IslandParams;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Topology {
-    private List<Island> islands;
+    private List<IslandParams> islands;
     private int connections[][];
+    private int generations;
 
-    public Topology(List<Island> islands, int[][] connections)
+    public Topology(List<IslandParams> islands, int[][] connections, int generations)
     {
-        islands = new ArrayList<Island>();
-        for(Island island : islands) this.islands.add(island);
-
-
+        this.islands = new ArrayList<IslandParams>();
+        for(IslandParams island : islands) this.islands.add(island);
+        this.connections = connections;
+        this.generations = generations;
     }
 
     public int[][] getConnections()
@@ -29,14 +32,14 @@ public class Topology {
             }
     }
 
-    public List<Island> getIslands()
+    public List<IslandParams> getIslands()
     {
         return islands;
     }
 
-    public void setIslands(List<Island> islands)
+    public void setIslands(List<IslandParams> islands)
     {
         islands.clear();
-        for(Island island : islands) this.islands.add(island);
+        for(IslandParams island : islands) this.islands.add(island);
     }
 }

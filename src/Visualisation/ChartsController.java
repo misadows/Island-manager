@@ -1,56 +1,49 @@
 package Visualisation;
 
-/**
- *  We got island collection and according to task we have to create chart for chosen island
- */
-import Island.IslandParams;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.control.TextField;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class ChartsController {
-
-
-    //setting up outcomes from the island (taking under notice Results class and EpochResult class)
-    private IslandParams params;
-    //private Population population;
-    //private FitnessCalculator fitnessCalculator;
-    //private EpochResult ep = new EpochResult(population, fitnessCalculator);
-    //private Island island = new Island(params);
+    private MainApp mainApp;
 
     @FXML
-    private TextField islandNameTextField;
-    @FXML
-    private TextField ichartTitleTextField;
-    @FXML
-    private CategoryAxis chartCategoryAxis;
-    @FXML
-    private NumberAxis chartNumberAxis;
-    private ObservableList<String> mn = FXCollections.observableArrayList();
+    private LineChart<Integer, Integer> lineChart;
 
-    public ChartsController() {
+    @FXML
+    private CategoryAxis generationsAxis;
 
+    private ObservableList<String> generations = FXCollections.observableArrayList();
+
+    public void setResultsData(MockResults results, int island) {
+        List<Integer> result = results.getIslandResults()[island];
+
+        XYChart.Series series = new XYChart.Series();
+        for (int i = 0; i < result.size(); i++) {
+            series.getData().add(new XYChart.Data(i, result.get(i)));
+        }
+        //It will be possible to add exactly 3 series averageFitness, maximumFitness, populationNumber
+        lineChart.getData().add(series);
     }
+
+public ChartsController() {}
 
     @FXML
     private void initialize() {
-
-        //and here I'm little bit confused that we should make 3D diagram and on OZ set 'epochResult' or just make 2D diagram ?!
-        //island.getResults(); // the list of the results
-        //ep.createResult(population, fitnessCalculator); // the list of the epoch results
-        //mn.addAll(Arrays.asList(island.getResults().toString()));
-        chartCategoryAxis.setCategories(mn);
-
+        // Temporary added, generationAxis will be dynamically change depend of generation size
+        generations.addAll(Arrays.asList("0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"));
+        generationsAxis.setCategories(generations);
     }
-//    public void setResultsData(ArrayList<EpochResult> ep) {
-//       // to implement
-//    }
 
-
-
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
 
 }

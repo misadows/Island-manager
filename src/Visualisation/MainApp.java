@@ -1,6 +1,9 @@
 package Visualisation;
 
 //import Island.EpochResult;
+
+import Model.Topology;
+import Topology.TopologySimulator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,11 +17,8 @@ import java.io.IOException;
 public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
-    //ArrayList<EpochResult> ep;
 
-    public MainApp() {
-        //Initialization some sample data
-    }
+    public MainApp() {}
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -30,9 +30,11 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("Island Manager");
 
         initRootLayout();
-
-        showConfigurationMenu();
+        initComponent("ConfigurationMenu.fxml");
+        initComponent("Visualisation.fxml");
     }
+
+
 
     private void initRootLayout() {
         try {
@@ -43,53 +45,66 @@ public class MainApp extends Application {
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
+
+
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
-    private void showConfigurationMenu() {
+    private void initComponent(String path){
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("ConfigurationMenu.fxml"));
+            loader.setLocation(MainApp.class.getResource(path));
 
-            AnchorPane configurationMenu = (AnchorPane) loader.load();
+            AnchorPane component = (AnchorPane) loader.load();
 
-            rootLayout.setCenter(configurationMenu);
+            if(path.equals("ConfigurationMenu.fxml")){
+                rootLayout.setRight(component);
 
-            ConfigurationMenuController controller = loader.getController();
-            controller.setMainApp(this);
+                ConfigurationMenuController controller = loader.getController();
+                controller.setMainApp(this);
+            }
+            else if(path.equals("Visualisation.fxml")){
+                rootLayout.setCenter(component);
+
+                AnimationController controller = loader.getController();
+                controller.setMainApp(this);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
-    public void showCharts() {
+
+
+    public void showCharts(int island) {
         try {
-            // Load the fxml file and create a new stage for the popup
-            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("Charts.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("CHART");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
+            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("Chart.fxml"));
+            AnchorPane chart = (AnchorPane) loader.load();
+            Stage chartStage = new Stage();
+            chartStage.setTitle("Islands Result");
+            chartStage.initModality(Modality.WINDOW_MODAL);
+            chartStage.initOwner(primaryStage);
+            Scene scene = new Scene(chart, 704, 768);
+            chartStage.setScene(scene);
 
-            // Set the island into the controller
-            ChartsController controller = loader.getController();
-            //controller.setResultsData(ep);
+//            TODO There is a bug connected with displaying charts, not repaired yet
+//            ChartsController controller = loader.getController();
+//            MockResults mockResults = new MockResults(100);
+//            controller.setResultsData(mockResults, island);
 
-            dialogStage.show();
+            chartStage.show();
 
         } catch (IOException e) {
-            // Exception gets thrown if the fxml file could not be loaded
             e.printStackTrace();
         }
+    }
+
+    public void startProgram(Topology topology){
+        TopologySimulator topologySimulator = new TopologySimulator(topology);
+        //Result result = topologySimulator.startSimulation();
+        // TODO wait until Topology module finished, and connect all application parts
     }
 
     public static void main(String[] args) { launch(args); }

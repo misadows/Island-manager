@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="14.0" layoutY="14.0" text="Starting population" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <font>
+                <Font name="AppleGothic Regular" size="12.0" />
+            </font></Label>
+        <TextField fx:id="population" layoutX="132.0" layoutY="31.0" prefWidth="125.0" text="0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <font>
+                <Font name="AppleGothic Regular" size="12.0" />
+            </font>
+      </TextField>
+        <Label layoutX="-2.0" layoutY="41.0" text="Basic Crossover" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="45.0">
+            <font>
+                <Font name="AppleGothic Regular" size="12.0" />
+            </font></Label>
+        <Slider fx:id="basic_crossover" blockIncrement="0.1" layoutX="135.0" layoutY="30.0" majorTickUnit="0.5" max="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="120.0" showTickLabels="true" showTickMarks="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0" />
+        <Slider fx:id="basic_mutation" blockIncrement="0.1" layoutX="135.0" layoutY="60.0" majorTickUnit="0.5" max="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="120.0" showTickLabels="true" showTickMarks="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="85.0" />
+        <Label layoutX="6.0" layoutY="63.0" text="Basic Mutation" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="85.0">
+            <font>
+                <Font name="AppleGothic Regular" size="12.0" />
+            </font></Label>
+        <TextField fx:id="tournament_size" layoutX="170.0" layoutY="194.0" prefWidth="125.0" text="0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="240.0">
+            <font>
+                <Font name="AppleGothic Regular" size="12.0" />
+            </font>
+      </TextField>
+        <Label layoutX="5.0" layoutY="199.0" text="Tournament selection" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="240.0">
+            <font>
+                <Font name="AppleGothic Regular" size="12.0" />
+            </font></Label>
+        <Slider fx:id="single_point_mutation" blockIncrement="0.1" layoutX="184.0" layoutY="90.0" majorTickUnit="0.5" max="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="120.0" showTickLabels="true" showTickMarks="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="125.0" />
+        <Label layoutX="2.0" layoutY="184.0" text="Migration rate" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="205.0">
+            <font>
+                <Font name="AppleGothic Regular" size="12.0" />
+            </font></Label>
+        <Label layoutX="10.0" layoutY="176.0" text="Migration rate" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="2500.0" />
+        <Slider fx:id="single_point_crossover" blockIncrement="0.1" layoutX="173.0" layoutY="152.0" majorTickUnit="0.5" max="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="120.0" showTickLabels="true" showTickMarks="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="165.0" />
+        <CheckBox fx:id="elitism" layoutX="5.0" layoutY="221.0" mnemonicParsing="false" text="Elitism" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="275.0">
+            <font>
+                <Font name="AppleGothic Regular" size="12.0" />
+            </font></CheckBox>
+        <Label layoutX="-3.0" layoutY="93.0" text="Single Point Crossover" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="125.0">
+            <font>
+                <Font name="AppleGothic Regular" size="12.0" />
+            </font></Label>
+        <Label layoutX="9.0" layoutY="125.0" text="Single Point Mutation" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="165.0">
+            <font>
+                <Font name="AppleGothic Regular" size="12.0" />
+            </font></Label>
+        <Slider fx:id="migration" blockIncrement="0.1" layoutX="172.0" layoutY="120.0" majorTickUnit="0.5" max="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="120.0" showTickLabels="true" showTickMarks="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="205.0" />
+    </children>
+</AnchorPane>

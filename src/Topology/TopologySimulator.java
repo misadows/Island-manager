@@ -1,6 +1,6 @@
 package Topology;
 
-import Model.Island;
+import Island.IslandParams;
 import Model.Result;
 import Model.Topology;
 
@@ -9,7 +9,7 @@ import java.util.List;
 public class TopologySimulator
 {
     private Topology topologia;
-    private List<Island> islands;
+    private List<IslandParams> islands;
 
     public TopologySimulator(Topology topologia)
     {
