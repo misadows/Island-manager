@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<review xmlns="http://plugins.intellij.net/revu" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://plugins.intellij.net/revu http://plugins.intellij.net/revu/ns/revu_1_0.xsd" name="topology-review" status="reviewing" shared="true">
+  <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 22:27:23 +0100" lastUpdatedOn="2017-01-08 22:29:33 +0100"/>
+  <goal></goal>
+  <referential>
+    <priorities/>
+    <tags/>
+    <users>
+      <user displayName="Piotr Maciejowski" login="maciejowski" roles="author"/>
+      <user displayName="Piotr Puszkarski" login="puszkarski" roles="author"/>
+      <user displayName="idzik" login="idzik" roles="admin,reviewer,author"/>
+    </users>
+  </referential>
+  <filescope pathPattern="file[*]:*//*"/>
+  <issues>
+    <issue filePath="src/Model/Topology.java" summary="Wystarczyłoby: islands = new ArrayList&lt;Island&gt;(islands);" vcsRev="48bd130f27423e18734c449c72ea28689940854b" lineStart="11" lineEnd="12" hash="479878509" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 22:36:58 +0100" lastUpdatedOn="2017-01-08 22:36:58 +0100"/>
+    </issue>
+    <issue filePath="src/Model/Topology.java" summary="Czemu connections jest wymagane w konstruktorze, skoro nic nie robimy z tym parametrem?" vcsRev="48bd130f27423e18734c449c72ea28689940854b" lineStart="9" lineEnd="9" hash="-1314906624" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 22:37:58 +0100" lastUpdatedOn="2017-01-08 22:37:58 +0100"/>
+    </issue>
+    <issue filePath="src/Model/Topology.java" summary="Czy naprawdę musimy kopiować zawartość otrzymanej tablicy?" vcsRev="48bd130f27423e18734c449c72ea28689940854b" lineStart="24" lineEnd="28" hash="1762688290" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 22:46:04 +0100" lastUpdatedOn="2017-01-08 22:46:04 +0100"/>
+      <desc>W obiektowym świecie zwykle odpowiedzialność zabezpieczenia danych leży po stronie udostępniającego - tzn. że jeśli nie chcemy by ktoś modyfikował nam tablicę powinniśmy zwrócić jej kopię. 
+Niemniej jednak, jeśli gdzieś pojawia się potrzba głębokiego kopowiowania wielowymiarowej tablicy to znak, że coś poszło nie tak. :P Nie byłoby przyjemniej gdyby reprezentacja topologii była zawarta w jakiejś klasie z mądrym API? Takim co to zwraca widoki kolekcji, które są unmodifiable, zamiast gołych tablic, które możemy zmieniać? </desc>
+    </issue>
+    <issue filePath="src/Topology/Migration.java" summary="Ogólna uwaga: w Javie raczej przyjmuje się, że zawsze w pętlach for i ifach piszemy {} - to znacznie bezpieczniejsze." vcsRev="d6bc4254bde670d0d216aff866e1cdba6a9b557a" lineStart="18" lineEnd="18" hash="-1987637950" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 22:52:16 +0100" lastUpdatedOn="2017-01-08 22:52:16 +0100"/>
+    </issue>
+    <issue filePath="src/Topology/MigrationManager.java" summary="Jaka jest rola tej klasy? Z tego co widzę to na ten moment po prostu opakowuje listę migracji... a symulatorze jest wykorzystywana obok dodatkowej listy." vcsRev="d6bc4254bde670d0d216aff866e1cdba6a9b557a" lineStart="6" lineEnd="6" hash="-1901954722" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 23:54:08 +0100" lastUpdatedOn="2017-01-08 23:54:08 +0100"/>
+    </issue>
+    <issue filePath="src/Topology/TopologySimulator.java" summary="&quot;Gołe&quot; stałe tekstowe nie powinny występować w kodzie -&gt; wyciągnąć stałą." vcsRev="d6bc4254bde670d0d216aff866e1cdba6a9b557a" lineStart="30" lineEnd="30" hash="-561230661" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 23:00:09 +0100" lastUpdatedOn="2017-01-08 23:00:09 +0100"/>
+    </issue>
+    <issue filePath="src/Topology/TopologySimulator.java" summary="4 pojawia się w kilku miejscach jako &quot;magic number&quot; - wyciągnąć do stałej." vcsRev="d6bc4254bde670d0d216aff866e1cdba6a9b557a" lineStart="27" lineEnd="27" hash="299860627" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 23:08:39 +0100" lastUpdatedOn="2017-01-08 23:08:39 +0100"/>
+    </issue>
+    <issue filePath="src/Topology/TopologySimulator.java" summary="Ta metoda jest wielka i chyba niekompletna. Trzeba ją zdecydowanie zdekomponować, co najmniej na kilka mniejszych metod." vcsRev="d6bc4254bde670d0d216aff866e1cdba6a9b557a" lineStart="34" lineEnd="34" hash="890343967" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 23:52:51 +0100" lastUpdatedOn="2017-01-08 23:52:51 +0100"/>
+    </issue>
+    <issue filePath="src/Topology/Worker.java" summary="Nazwy metod z małej litery" vcsRev="d6bc4254bde670d0d216aff866e1cdba6a9b557a" lineStart="78" lineEnd="78" hash="582680236" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 23:56:16 +0100" lastUpdatedOn="2017-01-08 23:56:16 +0100"/>
+    </issue>
+    <issue filePath="src/Topology/Worker.java" summary="Mam nadzieję, że to nie jest ostateczna wersja mechanizmu migracji, bo wygląda lekko chaotycznie, delikatnie mówiąc. ;)" vcsRev="d6bc4254bde670d0d216aff866e1cdba6a9b557a" lineStart="80" lineEnd="109" hash="1103454984" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 23:58:44 +0100" lastUpdatedOn="2017-01-08 23:58:44 +0100"/>
+    </issue>
+    <issue summary="Nie powinniśmy trzymać w repozytorium plików binarnych i bibliotek. W tym przypadku możemy sobie już darować, ale w przyszłości pamiętajcie by używać Mavena lub innych narzędzi do budowania." lineStart="-1" lineEnd="-1" hash="125" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 22:33:06 +0100" lastUpdatedOn="2017-01-08 22:33:06 +0100"/>
+    </issue>
+    <issue summary="Cały projekt sprawia wrażenie, jakby był daleki od efektu końcowego. Pomijając fakt, że trochę jest to niepokojące na tydzień przed końcem zajęć to ciężko przez to o konstruktywne uwagi do kodu..." lineStart="-1" lineEnd="-1" hash="125" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 24:01:26 +0100" lastUpdatedOn="2017-01-09 24:01:26 +0100"/>
+    </issue>
+  </issues>
+</review>
