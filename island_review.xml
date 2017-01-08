@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<review xmlns="http://plugins.intellij.net/revu" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://plugins.intellij.net/revu http://plugins.intellij.net/revu/ns/revu_1_0.xsd" name="island-review" status="reviewing" shared="true">
+  <history createdBy="[unknown]" lastUpdatedBy="[unknown]" createdOn="2017-01-08 19:14:09 +0100" lastUpdatedOn="2017-01-08 19:16:02 +0100"/>
+  <goal></goal>
+  <referential>
+    <priorities/>
+    <tags/>
+    <users>
+      <user displayName="Michał Sadowski" login="sadowski" roles="author"/>
+      <user displayName="idzik" login="idzik" roles="admin,reviewer,author"/>
+    </users>
+  </referential>
+  <filescope pathPattern="file[*]:*//*"/>
+  <issues>
+    <issue filePath="src/Island/Creature.java" summary="Kwestia gustu, ale ja osobiście nie lubię szczegółowych instrukcji w konstruktorze, bo bez dodatkowego komentarza nie wiadomo co robią -&gt; wyciągnąć metodę?" vcsRev="6deaf0442d1c90fd43200d5a99d2890eb40ead01" lineStart="10" lineEnd="13" hash="-1733237318" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 20:54:46 +0100" lastUpdatedOn="2017-01-08 20:54:46 +0100"/>
+    </issue>
+    <issue filePath="src/Island/FitnessCalculator.java" summary="Może czegoś nie widzę, ale nie byłoby prościej i wydajniej użyć metody charAt() i zwykłego porównania?" vcsRev="1578365fdc2c41b50469dfa987c463f8b5bb599d" lineStart="15" lineEnd="16" hash="1994368611" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 20:26:48 +0100" lastUpdatedOn="2017-01-08 20:26:48 +0100"/>
+    </issue>
+    <issue filePath="src/Island/FitnessCalculator.java" summary="Poziomy abstrakcji: wydzielić metodę typu convertSthToSth" vcsRev="1578365fdc2c41b50469dfa987c463f8b5bb599d" lineStart="14" lineEnd="21" hash="-523986979" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 20:28:29 +0100" lastUpdatedOn="2017-01-08 20:28:29 +0100"/>
+    </issue>
+    <issue filePath="src/Island/GeneticAlgorithm.java" summary="Rodzaje transformacji są podawane explicite w kodzie - docelowo chcieliśmy je wybierać w GUI? (do wyjaśnienia)" vcsRev="3ad6b7fbaef12ac0cedea00acdf1dceaa4bf40af" lineStart="39" lineEnd="44" hash="-112284728" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 20:53:34 +0100" lastUpdatedOn="2017-01-08 20:53:34 +0100"/>
+    </issue>
+    <issue filePath="src/Island/Island.java" summary="Czy na pewno powinniśmy zapisywać do bazy wyspę nawet jeśli symulacja jeszcze nie ruszyła?" vcsRev="7282b777550f7e8da5609b2db907dfd7226be075" lineStart="20" lineEnd="20" hash="1668594794" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 20:15:36 +0100" lastUpdatedOn="2017-01-08 20:15:36 +0100"/>
+    </issue>
+    <issue filePath="src/Island/Island.java" summary="Poziomy abstrakcji: wydzieliłbym metodę wybierającą numer migranta" vcsRev="7282b777550f7e8da5609b2db907dfd7226be075" lineStart="42" lineEnd="44" hash="-2103258825" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 20:19:46 +0100" lastUpdatedOn="2017-01-08 20:19:46 +0100"/>
+    </issue>
+    <issue filePath="src/Island/IslandInterface.java" summary="Redundantna nazwa" vcsRev="bd157ad145ab60c22019bd3c2ba85f68a3e5d66f" lineStart="3" lineEnd="3" hash="243257729" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 19:23:36 +0100" lastUpdatedOn="2017-01-08 19:23:36 +0100"/>
+      <desc>Jeśli już bardzo musimy mówić, że interfejs jest interfejsem to lepiej IIsland (konwencja z dużym &quot;I&quot;). 
+Ale na ogół powinniśmy tego unikać, tak samo jak przyrostków &quot;Impl&quot; w nazwach klas realizujących interfejs. U nas jest to trochę trudne, bo interfejsy są redundante względem implementacji (pełnią rolę łączników podprojektów).</desc>
+    </issue>
+    <issue filePath="src/Island/IslandInterface.java" summary="public w interfejsach jest niepotrzebne" vcsRev="bd157ad145ab60c22019bd3c2ba85f68a3e5d66f" lineStart="4" lineEnd="4" hash="804896428" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 19:29:36 +0100" lastUpdatedOn="2017-01-08 19:29:36 +0100"/>
+    </issue>
+    <issue filePath="src/Island/IslandParams.java" summary="Być może się mylę, ale nie wygodniej byłoby używać setterów w tym przypadku? Konstruktory z ogromną liczbą parametrów są bardzo mało czytelne." vcsRev="01438a5d93c7288375c4aa5fa0f32cb6a305a3d6" lineStart="19" lineEnd="21" hash="-89529842" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-10 24:30:54 +0100" lastUpdatedOn="2017-01-10 24:30:54 +0100"/>
+    </issue>
+    <issue filePath="src/Island/Population.java" summary="SRP: Pozbyć się zależności od FitnessCalculator?" vcsRev="c2c8cf5daf0468726bdd138061b5a3c75593f9ad" lineStart="6" lineEnd="6" hash="-292728860" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 21:16:26 +0100" lastUpdatedOn="2017-01-08 21:16:26 +0100"/>
+      <desc>Zastanawiam się nad zasadnością takiego powiązania - na stałe wiążemy populację z konkretnym sposobem jej ocenienia. O ile sama metoda getFittest() wydaje się rozsądna w kontekście enkapsulacji, tak uważam że to ona sama powinna przyjmować FitnessCalculator. Wtedy oznaczałoby to &quot;daj mi najfaniejszego osobnika według podanego schematu&quot;. </desc>
+    </issue>
+    <issue filePath="src/Island/Results.java" summary="SRP: Results i tym bardziej EpochResult nie powinny zajmować się przeliczaniem fitness" vcsRev="7282b777550f7e8da5609b2db907dfd7226be075" lineStart="25" lineEnd="27" hash="557340438" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 20:37:19 +0100" lastUpdatedOn="2017-01-08 20:37:19 +0100"/>
+      <desc>Results i EpochResult to klasy-kontenery, już na tym poziomie trochę dziwnie wygląda przekazywanie FitnessCalculator do metody addResult... Liczenie statystyk fitness powinno być odpowiedzialnością samej wyspy, albo lepiej: osobnej klasy liczącej statystyki.</desc>
+    </issue>
+    <issue filePath="src/Island/Transformation/BasicMutation.java" summary="setRate() w każdym operatorze ustalane jest w ten sam sposób -&gt; może klasa abstrakcyjna typu AbstractTransformation?" vcsRev="3ad6b7fbaef12ac0cedea00acdf1dceaa4bf40af" lineStart="28" lineEnd="30" hash="479025057" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 20:48:05 +0100" lastUpdatedOn="2017-01-08 20:48:05 +0100"/>
+    </issue>
+    <issue filePath="src/Island/Transformation/SinglePointCrossover.java" summary="Crossovery można spiąć w hierarchii klasą abstrakcyjną i wyciągnąć do niej powtwarzające się elementy (np. tournament selection). Analogicznie w przypadku mutacji." vcsRev="3ad6b7fbaef12ac0cedea00acdf1dceaa4bf40af" lineStart="7" lineEnd="7" hash="793388368" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 20:52:18 +0100" lastUpdatedOn="2017-01-08 20:52:18 +0100"/>
+    </issue>
+    <issue filePath="src/Island/persistance/HibernateUtils.java" summary="Przerobiłbym to w całości na singletona " vcsRev="7282b777550f7e8da5609b2db907dfd7226be075" lineStart="9" lineEnd="9" hash="163140985" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 19:41:32 +0100" lastUpdatedOn="2017-01-08 19:41:32 +0100"/>
+      <desc>Nazwa Utils sugeruje zestaw statycznych narzędzi, a tak naprawdę operujemy na stanie obiektu SessionFactory. 
+Sama realizacja singletona thread-safe lepiej brzmi w tym wykonaniu: https://en.wikipedia.org/wiki/Initialization-on-demand_holder_idiom</desc>
+    </issue>
+    <issue filePath="src/Island/persistance/ResultsManagement.java" summary="Results i ResultsManagement mają się do siebie jak DTO do DAO - pozbyć się statycznych deklaracji" vcsRev="7282b777550f7e8da5609b2db907dfd7226be075" lineStart="7" lineEnd="7" hash="142478645" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-08 20:14:14 +0100" lastUpdatedOn="2017-01-08 20:14:14 +0100"/>
+      <desc>Im więcej bezstanowych metod, tym gorzej (szczególnie gdy aplikacja jest wielowątkowa lub gdy w rzeczywistości operujemy na zmiennej globalnej). 
+To mogłaby być zwykła, stanowa klasa odpowiadająca za dostęp do (1 obiekt per wyspa).
+
+Poza tym wydaje mi się, że w rzeczywistości dana wyspa nie przekazuje za każdym razem innego obiektu results do metody add i update - co by oznaczało, że możemy przerobić tę klasę tak by przyjmowała w konstruktorze Results, z którym się zwiąże i potem udostępniała co najwyżej bezparametrowe update(). </desc>
+    </issue>
+  </issues>
+</review>
