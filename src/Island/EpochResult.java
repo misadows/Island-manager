@@ -1,9 +1,22 @@
 package Island;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name = "EpochResult")
 public class EpochResult {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int id;
+
+    @Transient
     private Population population;
+
+    @Column(name = "maxFitness")
     private int maxFitness;
+
+    @Column(name = "averageFitness")
     private double averageFitness;
 
     public Population getPopulation() {

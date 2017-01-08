@@ -1,5 +1,6 @@
 import Island.Island;
 import Island.IslandParams;
+import Island.persistance.HibernateUtils;
 
 
 public class Main {
@@ -15,5 +16,7 @@ public class Main {
         for(int i=0; i<island.getResults().getEpochResults().size(); i++){
             System.out.println("Fitness: " + island.getResults().getEpochResults().get(i).getMaxFitness());
         }
+
+        HibernateUtils.shutdown();
     }
 }

@@ -1,6 +1,7 @@
 package Island;
 
 
+import Island.persistance.ResultsManagement;
 import Model.Result;
 
 import java.util.Random;
@@ -17,6 +18,7 @@ public class Island implements IslandInterface{
         setParameters(params);
         geneticAlgorithm = new GeneticAlgorithm(params, fitnessCalculator);
         results = new Results();
+        ResultsManagement.addResults(results);
     }
 
     @Override
@@ -50,7 +52,7 @@ public class Island implements IslandInterface{
     public void nextEpoch(){
         population=geneticAlgorithm.evolvePopulation(population);
         results.addResult(population, fitnessCalculator);
-        //System.out.println("Fittest: " + population.getFittest() +" "+ fitnessCalculator.getFitness(population.getFittest()));
+        ResultsManagement.updateResults(results);
     }
 
     private void createPopulation(int populationSize){
