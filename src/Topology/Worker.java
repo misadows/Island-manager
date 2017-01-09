@@ -1,0 +1,115 @@
+package Topology;
+
+import akka.actor.UntypedActor;
+
+
+import java.util.ArrayList;
+
+
+import Island.Creature;
+
+import Island.Results;
+import Island.Island;
+import Topology.Messages.*;
+
+
+//Creating the worker
+	public class Worker extends UntypedActor
+	{
+		private int id;
+		private Island island;
+		private int generation;
+		private int generations;
+		private Results results = new Results();
+		
+		
+
+		public Worker()
+		{
+			generation = 0;
+	
+		}
+		
+		public int getGenerations()
+		{
+			return generations;
+		}
+		
+		public void setGenerations(int generations)
+		{
+			this.generations = generations;
+		}
+		
+		public void setId(int newId)
+		{
+			id = newId;
+		}
+		
+		public void setIsland(Island island)
+		{
+			this.island = island;
+		}
+		
+		public Island getIsland()
+		{
+			return island;
+		}
+	
+		public int getId()
+		{
+			return id;
+		}
+		
+		
+		private void Simulate() 
+		{
+			
+			
+				generation++;
+			ArrayList<Creature> x=island.getPopulation().getCreatures();
+			 
+	        
+				System.out.println(getId()+" "+x.size());
+				getSender().tell(new WorkDone(), this.getSelf());
+				this.island.nextEpoch();
+				
+	
+		}
+		
+		
+		public void onReceive(Object message)
+		{
+		
+			
+			if(message instanceof SetWorker)
+			{
+				SetWorker params = (SetWorker) message;
+				this.setId(params.getId());
+				this.setIsland(params.getIsland());
+				this.setGenerations(params.getGenerations());
+			}
+			
+			if(message instanceof Work)
+			{
+				//Work work = (Work) message;
+				Simulate();
+			}
+			
+			if(message instanceof getCreature){
+				getCreature params= (getCreature) message;
+				int where=params.getWhere();
+				//pobierz kreature
+				 Creature creature=this.island.getCreature();
+				getSender().tell(new returnMigration(where,creature), this.getSelf());
+			}
+			
+			
+			if(message instanceof sendCreature){
+				sendCreature params= (sendCreature) message;
+				Creature creature = params.getCreature();
+				this.island.sendCreature(creature);
+				getSender().tell(new MigrationDone(), this.getSelf());
+			}
+			
+		}
+	}

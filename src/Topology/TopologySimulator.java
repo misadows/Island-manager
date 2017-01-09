@@ -1,25 +1,169 @@
 package Topology;
 
-import Model.Island;
+import Island.Island;
+import Island.Creature;
 import Model.Result;
 import Model.Topology;
-
+import akka.actor.ActorRef;
+import akka.actor.Props;
+import akka.actor.UntypedActor;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class TopologySimulator
-{
-    private Topology topologia;
-    private List<Island> islands;
+import Topology.Messages.*;
 
-    public TopologySimulator(Topology topologia)
-    {
-        this.topologia = topologia;
-        this.islands = topologia.getIslands();
+
+public class TopologySimulator extends UntypedActor
+{	
+	private int currentGeneration;
+	private int generations;
+	private int workCounter;
+	private int migrationCounter;
+	private int migrationEnd;
+    private Topology topology;
+    private List<Island> islands = new ArrayList<Island>();
+    private ActorRef workers[];
+   
+    private MigrationManager migrationManager;
+    private List<Migration> currentMigrations = new ArrayList<Migration>();
+    private Result result = new Result();
+	private int[] where;
+	private int[] from;
+    public TopologySimulator(Topology topology)
+    {	
+    	currentGeneration=0;
+    	migrationEnd=0;
+    	generations=10;
+    	workCounter=0;
+    	migrationCounter=0;
+    	this.topology = topology;
+    	this.islands.addAll(topology.getIslands());
+        this.migrationManager = new MigrationManager();
+        this.workers = new ActorRef[4];
+        this.where = new int[4];
+        this.from = new int[4];
+        
+        System.out.println("dane wejœciowe");
+        for(int i=0; i<4;i++) workers[i] = this.getContext().actorOf(new Props(Worker.class), "worker"+i);
     }
+    
+    
+	@Override
+	public void onReceive(Object message) 
+	{		  
+		
+		
+		if (message instanceof StartSimulation) 
+	  {
+		  int i=0; 
+		  List<ActorRef> w = new ArrayList<ActorRef>();
+		  for(ActorRef worker : workers) w.add(worker); 
+		  for(ActorRef worker : workers)
+		  {
+			  worker.tell(new SetWorker(i, islands.get(i),generations), getSelf());
+			  ++i;
+		  }
+		  currentGeneration++;
+		  for(ActorRef worker : workers) worker.tell(new Work(), getSelf());
+		
+	  }
+		
+		if (message instanceof WorkDone){
+			Random generator = new Random();
+			workCounter++;
+			if(workCounter==4){
+				workCounter=0;
+				
+				//zrob migracje
+				if( generator.nextInt(2)==1){
+					for(int i=0;i<4;i++){ 
+						from[i]=i;
+					}
+					
+					for(int i=0;i<4;i++){ 
+						where[i]=i;
+					}
+					migrationCounter=generator.nextInt(4);
+					migrationEnd=migrationCounter+1;
+					System.out.println(migrationCounter+1);
+					
+					int tmp=4;
+					for(int i=0;i<=migrationCounter;i++){ //from (liczby nie moga sie powtarzac)
+						int val=generator.nextInt(tmp);
+						tmp--;
+						int tmp2;
+						tmp2=from[tmp];
+						from[tmp]=from[val];
+						from[val]=tmp2;
+						
+					}
+					tmp=4;
+					for(int i=0;i<=migrationCounter;i++){ //where
+						int val=generator.nextInt(tmp);
+						tmp--;
+						where[tmp]=val;
+					}
+					tmp=4;
+					for(int i=0;i<=migrationCounter;i++){
+						tmp--;
+						//if(where[tmp]!=from[tmp]){
+								//nie dodawaj
+							System.out.println("skad "+from[tmp] +" dokad "+where[tmp]);
+							workers[from[tmp]].tell(new getCreature(where[tmp]),getSelf());
+							
+		
+					}
+				}
+				
+				else{				
+					//kolejna generacja 
+					if(currentGeneration<=generations){
+					System.out.println("generacja "+ currentGeneration);
+					for(ActorRef worker : workers) worker.tell(new Work(), getSelf());
+					}
+					else {
+						 //System.out.println("Fitness: " + islands.get(3).getResults().getEpochResults().get(10).getMaxFitness());
+						getContext().system().shutdown();
+					}
+					currentGeneration++;
+				}
+			}
+		}
+		if(message instanceof returnMigration){
+			System.out.println("odebrano kreature");
+			returnMigration params= (returnMigration) message;
+			int where=params.getWhere();
+			Creature creature=params.getCreature();
+			workers[where].tell(new sendCreature(creature),getSelf());
+		}
+		if(message instanceof MigrationDone){
+				//odbierz migracje
+			
+				migrationEnd--;
+				if(migrationEnd==0){
+					System.out.println("zakonczono migracje");
 
-    public Result startSimulation()
-    {
-        Result result = new Result();
-        return result;
-    }
+					//kolejna generacja
+					if(currentGeneration<=generations){
+					System.out.println("generacja "+ currentGeneration);
+					for(ActorRef worker : workers) worker.tell(new Work(), getSelf());
+					}
+					
+					else{
+						// System.out.println("Fitness: " + islands.get(3).getResults().getEpochResults().get(10).getMaxFitness());
+						getContext().system().shutdown();
+					}
+					currentGeneration++;
+				}
+		}
+		
+		
+		  else 
+		  {
+		    unhandled(message);
+		  }
+		      
+	}
+    
 }

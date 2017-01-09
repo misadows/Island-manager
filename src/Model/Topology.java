@@ -3,13 +3,15 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import Island.Island;
+import Island.IslandParams;
+
 public class Topology {
-    private List<Island> islands;
+    private List<Island> islands = new ArrayList<Island>();
     private int connections[][];
 
     public Topology(List<Island> islands, int[][] connections)
     {
-        islands = new ArrayList<Island>();
         for(Island island : islands) this.islands.add(island);
 
 
