@@ -2,6 +2,7 @@ package Topology;
 
 import Island.Island;
 import Island.Creature;
+import Island.EpochResult;
 import Model.Result;
 import Model.Topology;
 import akka.actor.ActorRef;
@@ -10,6 +11,7 @@ import akka.actor.UntypedActor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+//import java.util.concurrent.TimeUnit;
 
 import Topology.Messages.*;
 
@@ -44,13 +46,13 @@ public class TopologySimulator extends UntypedActor
         this.where = new int[4];
         this.from = new int[4];
         
-        System.out.println("dane wejœciowe");
+        System.out.println("generacja 0");
         for(int i=0; i<4;i++) workers[i] = this.getContext().actorOf(new Props(Worker.class), "worker"+i);
     }
     
     
 	@Override
-	public void onReceive(Object message) 
+	public void onReceive(Object message) //throws InterruptedException 
 	{		  
 		
 		
@@ -118,12 +120,17 @@ public class TopologySimulator extends UntypedActor
 				
 				else{				
 					//kolejna generacja 
-					if(currentGeneration<=generations){
+					if(currentGeneration<generations){
 					System.out.println("generacja "+ currentGeneration);
 					for(ActorRef worker : workers) worker.tell(new Work(), getSelf());
 					}
 					else {
-						 //System.out.println("Fitness: " + islands.get(3).getResults().getEpochResults().get(10).getMaxFitness());
+						//System.out.println(currentGeneration + "bez mig");
+						
+						 for(int i=0; i<islands.get(3).getResults().getEpochResults().size(); i++){
+					     System.out.println("Fitness: " + islands.get(3).getResults().getEpochResults().get(i).getMaxFitness());}
+						//System.out.println("Fitness: " + islands.get(3).getResults().getEpochResults().get(9).getMaxFitness());
+						
 						getContext().system().shutdown();
 					}
 					currentGeneration++;
@@ -145,13 +152,16 @@ public class TopologySimulator extends UntypedActor
 					System.out.println("zakonczono migracje");
 
 					//kolejna generacja
-					if(currentGeneration<=generations){
+					if(currentGeneration<generations){
 					System.out.println("generacja "+ currentGeneration);
 					for(ActorRef worker : workers) worker.tell(new Work(), getSelf());
 					}
 					
 					else{
-						// System.out.println("Fitness: " + islands.get(3).getResults().getEpochResults().get(10).getMaxFitness());
+						//System.out.println(currentGeneration);
+						for(int i=0; i<islands.get(3).getResults().getEpochResults().size(); i++){
+						     System.out.println("Fitness: " + islands.get(3).getResults().getEpochResults().get(i).getMaxFitness());}
+						
 						getContext().system().shutdown();
 					}
 					currentGeneration++;
