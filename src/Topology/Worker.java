@@ -65,13 +65,15 @@ import Topology.Messages.*;
 		{
 			
 			
-				generation++;
+				
 			ArrayList<Creature> x=island.getPopulation().getCreatures();
 			 
 	        
-				System.out.println(getId()+" "+x.size());
-				getSender().tell(new WorkDone(), this.getSelf());
+				System.out.println(getId()+" "+x.size() +" "+ generation);
 				this.island.nextEpoch();
+				generation++;
+				getSender().tell(new WorkDone(), this.getSelf());
+				
 				
 	
 		}
