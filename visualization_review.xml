@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<review xmlns="http://plugins.intellij.net/revu" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://plugins.intellij.net/revu http://plugins.intellij.net/revu/ns/revu_1_0.xsd" name="visualization-review" status="reviewing" shared="true">
+  <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 24:02:32 +0100" lastUpdatedOn="2017-01-09 24:17:43 +0100"/>
+  <goal></goal>
+  <referential>
+    <priorities/>
+    <tags/>
+    <users>
+      <user displayName="Małgorzata Olszewska" login="olszewska" roles="author"/>
+      <user displayName="Paweł Banach" login="banach" roles="author"/>
+      <user displayName="idzik" login="idzik" roles="admin,reviewer,author"/>
+    </users>
+  </referential>
+  <filescope pathPattern="file[*]:*//*"/>
+  <issues>
+    <issue filePath="src/Visualisation/AnimationController.java" summary="Za 10 lat ludzie będą myśleli, że to zaszyfrowana przepowiednia o końcu świata. Czy te liczby nie mają przypadkiem coś wspólnego z rozmiarem komponentu i nie mogą być wyliczone na jego podstawie? ;)" vcsRev="a74031757f9a8b463d6fce22728b1f27434f6d9f" lineStart="89" lineEnd="89" hash="-1333242343" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 01:14:44 +0100" lastUpdatedOn="2017-01-09 01:14:44 +0100"/>
+    </issue>
+    <issue filePath="src/Visualisation/AnimationController.java" summary="&quot;Beware, dark magic ahead&quot; - to cytat z jednego z projektów, które rozwijam :D" vcsRev="a74031757f9a8b463d6fce22728b1f27434f6d9f" lineStart="86" lineEnd="86" hash="-1310403768" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 01:16:42 +0100" lastUpdatedOn="2017-01-09 01:16:42 +0100"/>
+    </issue>
+    <issue filePath="src/Visualisation/AnimationController.java" summary="Niezależnie od tego, co tu się jeszcze wydarzy, definiowanie osobnych metod handleIsland1, handleIsland2... to nie jest dobry kierunek :(" vcsRev="a74031757f9a8b463d6fce22728b1f27434f6d9f" lineStart="41" lineEnd="41" hash="43532914" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 01:24:39 +0100" lastUpdatedOn="2017-01-09 01:24:39 +0100"/>
+      <desc>Obecnie bardzo polegacie na FXML w tym przypadku i na sztywno definiujecie wielkie okrągłe przyciski. Z jednej strony mamy założenie o &quot;tylko czterech&quot; wyspach, z drugiej - w jaki sposób chcecie je np. układać wizualnie w zależności od topologii? </desc>
+    </issue>
+    <issue filePath="src/Visualisation/ConfigurationMenuController.java" summary="SRP, OCP i trochę WTF ;)" vcsRev="c38ebeb67b2ec23bbe239bdb1af820a2084013d8" lineStart="98" lineEnd="133" hash="1512692640" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 24:48:18 +0100" lastUpdatedOn="2017-01-09 24:52:44 +0100"/>
+      <desc>Zdecydowanie nie po to ludzie od JavaFX tak się namęczyli z klepaniem bindingów i observerów realizowanych jako Property żebyśmy musieli teraz ifować kontrolki... Kilka rzeczy do poprawy:
+1. Kontroler nie musi wiedzieć nic o ograniczeniach konkretnych parametrów, to jest część modelu i powinna się znaleźć w modelu (cała walidacja moim zdaniem).
+2. W modelu parametrów powinny się znaleźć Property (dla każdego parametru jedno), które można zbindować z odpowiednimi property konkretnych kontrolek. Ilekroć zmieni się wartość w GUI, automatycznie ustawi się również wartość w modelu.</desc>
+    </issue>
+    <issue filePath="src/Visualisation/ConfigurationMenuController.java" summary="Ogólna uwaga: przyjęło się w Javie w każdym ifie i pętli używać {}. To znacznie zmniejsza liczbę głupich błędów, a formatter w InteliJ/Eclipse ładnie układa wcięcia." vcsRev="c38ebeb67b2ec23bbe239bdb1af820a2084013d8" lineStart="86" lineEnd="86" hash="431561155" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 24:54:28 +0100" lastUpdatedOn="2017-01-09 24:54:28 +0100"/>
+    </issue>
+    <issue filePath="src/Visualisation/ConfigurationMenuController.java" summary="Lepiej by metody robiły co mówią - ta mówi, że drukuje, a tak naprawdę wyświetla okienko ;P" vcsRev="c38ebeb67b2ec23bbe239bdb1af820a2084013d8" lineStart="149" lineEnd="149" hash="-53625010" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 24:55:26 +0100" lastUpdatedOn="2017-01-09 24:55:26 +0100"/>
+    </issue>
+    <issue filePath="src/Visualisation/ConfigurationMenuController.java" summary="To jest pewnie domyślna wartość - powinna znaleźć się w modelu, najlepiej jako stała private static final (magiczne wartości pałętające się po kodzie są złe)" vcsRev="c38ebeb67b2ec23bbe239bdb1af820a2084013d8" lineStart="158" lineEnd="158" hash="-405557502" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 24:57:14 +0100" lastUpdatedOn="2017-01-09 24:57:14 +0100"/>
+    </issue>
+    <issue filePath="src/Visualisation/ConfigurationMenuController.java" summary="GodObject, SRP - dla czytelności i zachowania SRP lepiej rozbić kontrolery (szczególnie gdy podepniecie bindingi)" vcsRev="c38ebeb67b2ec23bbe239bdb1af820a2084013d8" lineStart="-1" lineEnd="-1" hash="-2114246833" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 24:59:15 +0100" lastUpdatedOn="2017-01-09 01:09:19 +0100"/>
+      <desc>Widzę tu zarówno zarządzanie przebiegiem symulacji, zarządzanie parametrami wysp i zarządzanie topologiami. Wydzieliliście zarządzanie grafem i wykresami, bo są niezależne od reszty. Tu pewnie będzie to trudniejsze, ale nikt nie powiedział, że kontrolery muszą być niezależne - w szczególności można je ułożyć w hierarchię (drzewo).</desc>
+    </issue>
+    <issue filePath="src/Visualisation/ConfigurationMenuController.java" summary="Wiem, wiem, GUIe generują dużo kodu... ale mimo wszystko w Javie zawsze deklarujemy jeden atrybut w jednej linii. " vcsRev="c38ebeb67b2ec23bbe239bdb1af820a2084013d8" lineStart="50" lineEnd="50" hash="-670752413" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 01:03:23 +0100" lastUpdatedOn="2017-01-09 01:03:23 +0100"/>
+      <desc>Tak jest zdecydowanie łatwiej zarządzać typem atrybutu + zawsze miejcie na uwadze to, że Wasz kod może być modyfikowany przez inne osoby. Systemy kontroli wersji radzą sobie całkiem nieźle, ale po co stwarzać więcej okazji do konfliktów.</desc>
+    </issue>
+    <issue filePath="src/Visualisation/MainApp.java" summary="LSP: Uzależniacie logikę metody od szczególnych wartości jej parametru" vcsRev="20d96ecaa90f063dc459a9f67e5986bbf9971ee3" lineStart="62" lineEnd="68" hash="1418133632" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 24:25:06 +0100" lastUpdatedOn="2017-01-09 24:25:06 +0100"/>
+      <desc>To takie złamanie zasady podstawienia Liskov (tyle że nie na poziomie uszczegółowiania po typach, co po wartościach). Wołacie metodę dwa razy dla dwóch różnych wartości i dla każdej z nich logika jest nieco inna -&gt; to powinny być jednak dwie różne metody. Część wspólna to samo wczytywanie komponentu z FXML - i to można wyciągnąć do wspólnej metody.</desc>
+    </issue>
+    <issue filePath="src/Visualisation/MainApp.java" summary="To można załatwić podobnie jak w przypadku innych komponentów (patrz komentarz do initComponent()" vcsRev="20d96ecaa90f063dc459a9f67e5986bbf9971ee3" lineStart="81" lineEnd="83" hash="1442976567" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 24:27:55 +0100" lastUpdatedOn="2017-01-09 24:27:55 +0100"/>
+    </issue>
+    <issue filePath="src/Visualisation/MainApp.java" summary="Nie będę pisać tego przy każdej okazji, ale pamiętajcie by wszystkie stałe w kodzie wydzielić do pól private static final." vcsRev="20d96ecaa90f063dc459a9f67e5986bbf9971ee3" lineStart="41" lineEnd="41" hash="854529654" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 01:10:29 +0100" lastUpdatedOn="2017-01-09 01:10:29 +0100"/>
+    </issue>
+    <issue filePath="src/Visualisation/MainApp.java" summary="SRP. Nie jestem przekonany czy MainApp to dobre miejsce na zarządzanie symulacją." vcsRev="20d96ecaa90f063dc459a9f67e5986bbf9971ee3" lineStart="103" lineEnd="103" hash="-307868543" status="to_resolve">
+      <history createdBy="idzik" lastUpdatedBy="idzik" createdOn="2017-01-09 01:30:43 +0100" lastUpdatedOn="2017-01-09 01:30:43 +0100"/>
+      <desc>Odpowiedzialnością MainApp jest stworzenie wszystkich kontrolerów i widoków oraz pospinanie ich ze sobą. Zarządzaniem symulacją powinien się moim zdaniem zająć jakiś główny kontroler (zwykle nazywa się go RootControllerem). Wówczas każdy z kontrolerów miałby dostęp do RootControllera (a nie do MainApp) i przez niego np. odpalał symulację. </desc>
+    </issue>
+  </issues>
+</review>
