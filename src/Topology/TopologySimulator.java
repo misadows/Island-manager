@@ -18,6 +18,7 @@ import Topology.Messages.*;
 
 public class TopologySimulator extends UntypedActor
 {	
+	private boolean isMigration;
 	private int currentGeneration;
 	private int generations;
 	private int workCounter;
@@ -34,6 +35,7 @@ public class TopologySimulator extends UntypedActor
 	private int[] from;
     public TopologySimulator(Topology topology)
     {	
+    	isMigration=false;
     	currentGeneration=0;
     	migrationEnd=0;
     	generations=10;
@@ -109,16 +111,21 @@ public class TopologySimulator extends UntypedActor
 					tmp=4;
 					for(int i=0;i<=migrationCounter;i++){
 						tmp--;
-						//if(where[tmp]!=from[tmp]){
-								//nie dodawaj
+						if(where[tmp]!=from[tmp]){
+							isMigration=true;
 							System.out.println("skad "+from[tmp] +" dokad "+where[tmp]);
 							workers[from[tmp]].tell(new getCreature(where[tmp]),getSelf());
-							
+					}
+						else{
+							System.out.println("nie mozna migrowac na ta sama wyspe ");
+							migrationEnd--;
+						}
 		
 					}
 				}
 				
-				else{				
+				if(!isMigration){	
+					isMigration=false;
 					//kolejna generacja 
 					if(currentGeneration<generations){
 					System.out.println("generacja "+ currentGeneration);
@@ -152,6 +159,7 @@ public class TopologySimulator extends UntypedActor
 					System.out.println("zakonczono migracje");
 
 					//kolejna generacja
+					isMigration=false;
 					if(currentGeneration<generations){
 					System.out.println("generacja "+ currentGeneration);
 					for(ActorRef worker : workers) worker.tell(new Work(), getSelf());
