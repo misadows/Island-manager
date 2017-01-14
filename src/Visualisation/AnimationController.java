@@ -84,7 +84,7 @@ public class AnimationController {
 
         creature.setOpacity(1);
         transition.setNode(creature);
-        //I know it's magic :D
+        //soluting equation of Carno's table
         //Set x transition
         transition.setFromX(from%2 == 0 ? 20 : 444);
         transition.setToX((from%2 == 0 && to%2 != 0) ? 444 : 20);

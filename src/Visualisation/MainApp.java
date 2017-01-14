@@ -30,8 +30,8 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("Island Manager");
 
         initRootLayout();
-        initComponent("ConfigurationMenu.fxml");
-        initComponent("Visualisation.fxml");
+        comparePath("ConfigurationMenu.fxml");
+        comparePath("Visualisation.fxml");
     }
 
 
@@ -53,28 +53,35 @@ public class MainApp extends Application {
         }
     }
 
-    private void initComponent(String path){
+    private void comparePath(String path){
         try {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainApp.class.getResource(path));
+        AnchorPane component = (AnchorPane) loader.load();
+
+        if(path.equals("ConfigurationMenu.fxml")){
+            rootLayout.setRight(component);
+        }
+        else if(path.equals("Visualisation.fxml")){
+            rootLayout.setCenter(component);
+         }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        initComponent(path);
+
+    }
+    private void initComponent(String path){
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource(path));
 
-            AnchorPane component = (AnchorPane) loader.load();
+            ConfigurationMenuController controllerCMC = loader.getController();
+            controllerCMC.setMainApp(this);
 
-            if(path.equals("ConfigurationMenu.fxml")){
-                rootLayout.setRight(component);
-
-                ConfigurationMenuController controller = loader.getController();
-                controller.setMainApp(this);
-            }
-            else if(path.equals("Visualisation.fxml")){
-                rootLayout.setCenter(component);
-
-                AnimationController controller = loader.getController();
-                controller.setMainApp(this);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            AnimationController controllerAC = loader.getController();
+            controllerAC.setMainApp(this);
     }
 
 
