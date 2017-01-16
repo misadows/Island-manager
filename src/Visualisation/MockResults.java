@@ -12,7 +12,7 @@ public class MockResults {
 
     public static int ISLAND_NUMBER = 4;
     public static final String TARGET_SIZE = "1110000110101010100001110100110101111000101110101101010110111101";
-
+    // 20. Dodatkowe: Wyciągnąć wszystko do stałych
     private ArrayList<Integer>[] islandResults = new ArrayList[ISLAND_NUMBER];
     public MockResults(int generations) {
         for(int j=0; j < ISLAND_NUMBER; j++){

@@ -74,10 +74,10 @@
                                     <children>
                                         <TabPane fx:id="tabPane" layoutY="21.0" prefHeight="263.0" prefWidth="271.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <tabs>
-                                                <Tab fx:id="tab1" closable="false" text="Island I" />
-                                                <Tab fx:id="tab2" closable="false" text="Island II" />
-                                                <Tab fx:id="tab3" closable="false" text="Island III" />
-                                                <Tab fx:id="tab4" closable="false" text="Island IV" />
+                                                <Tab closable="false" text="Island I" />
+                                                <Tab closable="false" text="Island II" />
+                                                <Tab closable="false" text="Island III" />
+                                                <Tab closable="false" text="Island IV" />
                                             </tabs>
                                         </TabPane>
                                     </children>

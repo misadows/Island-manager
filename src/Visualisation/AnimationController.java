@@ -38,6 +38,8 @@ public class AnimationController {
     
     // Time for animation will be constant e.g. 60 sek
     // So duration of one epoch(animations) will be: ( 60000/epochs millis)
+
+    // Nie definiować na sztywno wysp!!!
     @FXML
     public void handleIsland1Clicked(){
         System.out.println("Island 1 was clicked");
@@ -85,6 +87,7 @@ public class AnimationController {
         creature.setOpacity(1);
         transition.setNode(creature);
         //soluting equation of Carno's table
+        // 11. Opisać co tu się do chuja Pana wyprawia
         //Set x transition
         transition.setFromX(from%2 == 0 ? 20 : 444);
         transition.setToX((from%2 == 0 && to%2 != 0) ? 444 : 20);
