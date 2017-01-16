@@ -7,6 +7,8 @@ import Topology.TopologySimulator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -17,6 +19,7 @@ import java.io.IOException;
 public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
+    public TabPane tabPane;
 
     public MainApp() {}
 
@@ -30,8 +33,8 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("Island Manager");
 
         initRootLayout();
-        comparePath("ConfigurationMenu.fxml");
-        comparePath("Visualisation.fxml");
+        //comparePath("ConfigurationMenu.fxml");
+        //comparePath("Visualisation.fxml");
     }
 
 
@@ -53,7 +56,7 @@ public class MainApp extends Application {
         }
     }
 
-    private void comparePath(String path){
+    private void comparePath(String path)throws IOException {
         try {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainApp.class.getResource(path));
@@ -72,7 +75,7 @@ public class MainApp extends Application {
         initComponent(path);
 
     }
-    private void initComponent(String path){
+    private void initComponent(String path)throws IOException {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource(path));
@@ -82,6 +85,9 @@ public class MainApp extends Application {
 
             AnimationController controllerAC = loader.getController();
             controllerAC.setMainApp(this);
+        for(Tab tab : tabPane.getTabs()){
+            tab.setContent((AnchorPane) FXMLLoader.load(this.getClass().getResource("Tab.fxml")));
+        }
     }
 
 

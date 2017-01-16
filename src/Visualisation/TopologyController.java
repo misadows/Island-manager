@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by GOSIA on 12.01.2017.
  */
-public class TopologyController extends ConfigurationMenuController {
+public class TopologyController extends TabController {
 
     private List<IslandParams> isl;
     private ConfigurationMenuController cmc = new ConfigurationMenuController(isl);
