@@ -1,14 +1,32 @@
 package Visualisation;
 
 import Island.IslandParams;
+import Model.Topology;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class ConfigurationMenuController {
-    int[][][] TOPOLOGY = new int[][][]{
+    public static String TARGET_SOLUTION = "1110000110101010100001110100110101111000101110101101010110111101";
+    public static String INCORRECT_TARGET_SOLUTION = "Target solution: %s is incorrect! " +
+            "\nThe length must be larger than 64 and please use only: (1 | 0)*";
+    public static String ISLAND_PARSE_ERROR = "While parsing: %s in tab: %s\nError: %s";
+    public static String TOPOLOGY_PARSE_ERROR = "While parsing: %s \nError: %s";
+    public static String TAB_PATH = "Tab.fxml";
+    public static String ERROR_MESSAGE_TITLE = "Error in form configuration";
+    public static String INVALID_NODE_ID = "Invalid node id";
+    public static String TOURNAMENT_SELECTION_ERROR = "Tournament selection must be between 1 and 1 000";
+    public static String POPULATION_ERROR = "Population must be between 1 and 1 000 000";
+    public static String TOPOLOGY_NOT_SELECTED = "Please select topology!";
+    public static String GENERATIONS_ERROR = "Generations must be between 1 and 10 000";
+    public static int[][][] TOPOLOGY = new int[][][]{
             {
                     {0, 1, 1, 1},
                     {1, 0, 1, 1},
@@ -35,169 +53,176 @@ public class ConfigurationMenuController {
             }
     };
     private MainApp mainApp;
-    private TopologyParams topology;
+
+    private Topology topology;
     private List<IslandParams> islands;
 
     ToggleGroup group = new ToggleGroup();
 
     @FXML
-    private RadioButton unidirectionalCircleRadioButton, eachOfEachRadioButton, ladderRadioButton, bidirectionalCircleRadioButton;
+    private RadioButton unidirectionalCircleRadioButton;
+    @FXML
+    private RadioButton eachOfEachRadioButton;
+    @FXML
+    private RadioButton ladderRadioButton;
+    @FXML
+    private RadioButton bidirectionalCircleRadioButton;
 
     @FXML
     private TextField generationsTextField;
 
     @FXML
-    private SplitMenuButton functionsSplitMenuButton;
+    private TextArea targetSolutionTextArea;
 
     @FXML
-    private TextField minimumDomainTextField, maximumDomainTextField;
+    private TabPane tabPane;
 
     @FXML
-    private TextField startingPopulation1TextField, startingPopulation2TextField,
-            startingPopulation3TextField, startingPopulation4TextField;
+    private AnchorPane topologyForm, islandsForm;
 
-    @FXML
-    private Slider basicCrossover1Slider, basicCrossover2Slider,
-            basicCrossover3Slider, basicCrossover4Slider;
-
-    @FXML
-    private Slider basicMutation1Slider, basicMutation2Slider,
-            basicMutation3Slider, basicMutation4Slider;
-
-    @FXML
-    private Slider singlePointCrossover1Slider, singlePointCrossover2Slider,
-            singlePointCrossover3Slider, singlePointCrossover4Slider;
-
-    @FXML
-    private Slider singlePointMutation1Slider, singlePointMutation2Slider,
-            singlePointMutation3Slider,singlePointMutation4Slider;
-
-    @FXML
-    private Slider migrationRate1Slider, migrationRate2Slider,
-            migrationRate3Slider, migrationRate4Slider;
-
-    @FXML
-    private TextField tournamentSize1TextField, tournamentSize2TextField,
-            tournamentSize3TextField, tournamentSize4TextField;
-
-    @FXML
-    private CheckBox elitism1CheckBox, elitism2CheckBox,
-            elitism3CheckBox, elitism4CheckBox;
-
-    @FXML
-    private ProgressBar progressBar;
-
-    @FXML
-    private Button startButton, cancelButton;
-
+    // TO DELETE IN TAB CONTROLLER
+    private int startingPopulation, tournamentSize;
+    private double basicCrossover, basicMutation, singlePointCrossover, singlePointMutation, migrationRate;
+    private boolean elitism;
+    private String targetSolution;
+    private Alert alert = new Alert(Alert.AlertType.ERROR);
+    // END
     @FXML
     private void handleStartButtonAction() {
-        if(validate_configuration()) {
-            setParams();
+        disableForms(true);
+        if (!validateTargetSolution()) return;
+        islands = new ArrayList<>();
+        for(Tab tab : tabPane.getTabs()){
+            if(!addIslandParams((AnchorPane) tab.getContent(), tab.getText())) return;
         }
-
-        // TO DO
-        // Get all data from the form +
-        // Validate inputs - make tests
-        // What if user don't input all data, set default or show error?!
-        // Make functionSplitMenu working
-        // Implement "targetSolution -> pass function -> Make functionSplitMenu working
-        // Freeze configuration
-        // Refactor field names
+        if(!addTopologyParams()) return;
+        this.mainApp.startProgram(getTopology());
     }
 
-    private void setParams() {
-        setIsland(Integer.parseInt(startingPopulation1TextField.getText()),
-                basicCrossover1Slider.getValue(),
-                basicMutation1Slider.getValue(),
-                singlePointCrossover1Slider.getValue(),
-                singlePointMutation1Slider.getValue(),
-                migrationRate1Slider.getValue(),
-                Integer.parseInt(tournamentSize1TextField.getText()),
-                elitism1CheckBox.isSelected(), "Funkcja"
-        );
-
-        setIsland(Integer.parseInt(startingPopulation2TextField.getText()),
-                basicCrossover2Slider.getValue(),
-                basicMutation2Slider.getValue(),
-                singlePointCrossover2Slider.getValue(),
-                singlePointMutation2Slider.getValue(),
-                migrationRate2Slider.getValue(),
-                Integer.parseInt(tournamentSize2TextField.getText()),
-                elitism2CheckBox.isSelected(), "Funkcja"
-        );
-
-        setIsland(Integer.parseInt(startingPopulation3TextField.getText()),
-                basicCrossover3Slider.getValue(),
-                basicMutation3Slider.getValue(),
-                singlePointCrossover3Slider.getValue(),
-                singlePointMutation3Slider.getValue(),
-                migrationRate3Slider.getValue(),
-                Integer.parseInt(tournamentSize3TextField.getText()),
-                elitism3CheckBox.isSelected(), "Funkcja"
-        );
-
-        setIsland(Integer.parseInt(startingPopulation4TextField.getText()),
-                basicCrossover4Slider.getValue(),
-                basicMutation4Slider.getValue(),
-                singlePointCrossover4Slider.getValue(),
-                singlePointMutation4Slider.getValue(),
-                migrationRate4Slider.getValue(),
-                Integer.parseInt(tournamentSize4TextField.getText()),
-                elitism4CheckBox.isSelected(), "Funkcja"
-        );
-
-        setTopology(islands, TOPOLOGY[(Integer)group.getSelectedToggle().getUserData()],
-                Integer.parseInt(generationsTextField.getText()));
+    private boolean addTopologyParams() {
+        try{
+            int generations = Integer.parseInt(generationsTextField.getText());
+            if(generations < 1 || generations > 10000) throw new FormException(GENERATIONS_ERROR);
+            if(group.getSelectedToggle() == null) throw new FormException(TOPOLOGY_NOT_SELECTED);
+            setTopology(new Topology(this.islands, TOPOLOGY[(Integer)group.getSelectedToggle().getUserData()], generations));
+        }
+        catch(Exception e){
+            showErrorDialog(String.format(TOPOLOGY_PARSE_ERROR, generationsTextField.getId(), e.getMessage()));
+            return false;
+        }
+        return true;
     }
 
-    public void setTopology(List<IslandParams> islands, int[][] connections, int generations) {
-        this.topology = new TopologyParams(islands, connections, generations);
+    private boolean addIslandParams(AnchorPane ap, String tab) {
+        for(Node node : ap.getChildren()) {
+            if(node.getId() == null) continue;
+            try{
+                switch(node.getId()){
+                    case "population":
+                        startingPopulation = Integer.parseInt(((TextField) node).getText());
+                        if(startingPopulation < 1 || startingPopulation >= 1000000) throw new FormException(POPULATION_ERROR);
+                        break;
+                    case "basic_crossover":
+                        basicCrossover = ((Slider) node).getValue();
+                        break;
+                    case "basic_mutation":
+                        basicMutation = ((Slider) node).getValue();
+                        break;
+                    case "single_point_mutation":
+                        singlePointMutation = ((Slider) node).getValue();
+                        break;
+                    case "single_point_crossover":
+                        singlePointCrossover = ((Slider) node).getValue();
+                        break;
+                    case "migration":
+                        migrationRate = ((Slider) node).getValue();
+                        break;
+                    case "tournament_size":
+                        tournamentSize = Integer.parseInt(((TextField) node).getText());
+                        if(tournamentSize < 0 || tournamentSize >= 1000) throw new FormException(TOURNAMENT_SELECTION_ERROR);
+                        break;
+                    case "elitism":
+                        elitism = ((CheckBox) node).isSelected();
+                        break;
+
+                    default:
+                        System.out.println(INVALID_NODE_ID);
+
+                }
+            }
+            catch(Exception e){
+                showErrorDialog(String.format(ISLAND_PARSE_ERROR, node.getId(), tab, e.getMessage()));
+                return false;
+            }
+        }
+        this.islands.add(new IslandParams(startingPopulation, migrationRate, basicCrossover, basicMutation,
+                singlePointCrossover, singlePointMutation, tournamentSize, elitism, targetSolution));
+        return true;
     }
 
-    public void setIsland(int creaturesNumber, double migrationRate, double basicCrossoverRate, double basicMigrationRate,
-                          double singlePointCrossoverRate, double singleMutationRate, int tournamentSize,
-                          boolean elitism, String targetSolution) {
-        this.islands.add(new IslandParams(creaturesNumber, migrationRate, basicCrossoverRate, basicMigrationRate,
-                singlePointCrossoverRate, singleMutationRate, tournamentSize, elitism, targetSolution));
+    private void disableForms(boolean form) {
+        topologyForm.setDisable(form);
+        islandsForm.setDisable(form);
     }
 
-    private boolean validate_configuration() {
-        System.out.println("It would validate configuration form ...");
+    private void showErrorDialog(String message) {
+        alert.setContentText(message);
+        alert.showAndWait();
+        disableForms(false);
+    }
+
+    private boolean validateTargetSolution() {
+        targetSolution = targetSolutionTextArea.getText();
+        if(targetSolution.isEmpty()) {
+            targetSolution = TARGET_SOLUTION;
+        }
+        else if(!Pattern.matches("[01]*", targetSolution) || targetSolution.length() < 64){
+            showErrorDialog(String.format(INCORRECT_TARGET_SOLUTION, targetSolution));
+        }
         return true;
     }
 
     @FXML
     private void handleCancelButtonAction() {
-        System.out.println("Button was clicked, stop action ...");
-
+        disableForms(false);
     }
 
-
-    public ConfigurationMenuController() {
-
+    public Topology getTopology(){
+        return this.topology;
     }
+
+    public void setTopology(Topology topology) {
+        this.topology = topology;
+    }
+
+    public ConfigurationMenuController() {}
 
     @FXML
-    private void initialize() {
+    private void initialize() throws IOException {
+        alert.setTitle(ERROR_MESSAGE_TITLE);
+        //Default configuration:
+        startingPopulation = 1000;
+        tournamentSize = 10;
+        basicCrossover = 0.1;
+        basicMutation = 0.1;
+        singlePointCrossover = 0.1;
+        singlePointMutation = 0.1;
+        migrationRate = 0.1;
+        elitism = true;
+
         bidirectionalCircleRadioButton.setToggleGroup(group);
         unidirectionalCircleRadioButton.setToggleGroup(group);
         eachOfEachRadioButton.setToggleGroup(group);
         ladderRadioButton.setToggleGroup(group);
-        bidirectionalCircleRadioButton.setUserData(1);
-        unidirectionalCircleRadioButton.setUserData(2);
-        eachOfEachRadioButton.setUserData(3);
-        ladderRadioButton.setUserData(4);
-        islands = new ArrayList<IslandParams>();
+        bidirectionalCircleRadioButton.setUserData(0);
+        unidirectionalCircleRadioButton.setUserData(1);
+        eachOfEachRadioButton.setUserData(2);
+        ladderRadioButton.setUserData(3);
 
-
-        //TO DO
-        // Ask about default min and max for this values and set sliders
-
-
-
-
-    }
+        for(Tab tab : tabPane.getTabs()){
+            tab.setContent((AnchorPane) FXMLLoader.load(this.getClass().getResource(TAB_PATH)));
+        }
+}
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
