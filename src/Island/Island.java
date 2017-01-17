@@ -1,49 +1,40 @@
 package Island;
 
+import java.util.ArrayList;
 
-import Model.Result;
-
-import java.util.Random;
-
-public class Island implements IslandInterface{
-    private IslandParams params;
-    private Population population;
-    private GeneticAlgorithm geneticAlgorithm;
+public class Population {
+    private ArrayList<Creature> creatures;
     private FitnessCalculator fitnessCalculator;
-    private Results results;
+    private int genotypeSize;
 
-    public Island(IslandParams params){
-        fitnessCalculator = new FitnessCalculator();
-        setParameters(params);
-        geneticAlgorithm = new GeneticAlgorithm(params, fitnessCalculator);
-        results = new Results();
+    public Population(int populationSize, FitnessCalculator fitnessCalculator, int genotypeSize){
+        creatures = new ArrayList<>(populationSize);
+        this.fitnessCalculator = fitnessCalculator;
+        this.genotypeSize = genotypeSize;
     }
 
-    @Override
-    public Results getResults() {
-        return results;
+    public void fillPopulation(int populationSize){
+        for(int i=0; i<populationSize; i++){
+            creatures.add(new Creature(genotypeSize));
+        }
+    }
+    public ArrayList<Creature> getCreatures(){
+    	return creatures;
+    }
+    public int populationSize() {
+        return creatures.size();
     }
 
-    @Override
-    public void setParameters(IslandParams params) {
-        this.params = params;
-        fitnessCalculator.setSolution(params.getTargetSolution());
-        createPopulation(params.getCreaturesNumber());
+    public Creature getCreature(int index) {
+        return creatures.get(index);
     }
 
-    @Override
-    public void sendCreature(Creature creature) {
-        population.addCreature(creature);
+    public void saveCreature(int index, Creature indiv) {
+        creatures.add(index, indiv);
     }
 
-    @Override
-    public Creature getCreature() {
-        int size = population.populationSize();
-        Random generator = new Random();
-        int i = generator.nextInt(size);
-        Creature creature = population.getCreature(i);
-        population.removeCreature(i);
-        return creature;
+    public void addCreature(Creature creature){
+        creatures.add(creature);
     }
 <<<<<<< HEAD
 =======
@@ -52,15 +43,19 @@ public class Island implements IslandInterface{
     }
 >>>>>>> topology
 
-    @Override
-    public void nextEpoch(){
-        population=geneticAlgorithm.evolvePopulation(population);
-        results.addResult(population, fitnessCalculator);
-        //System.out.println("Fittest: " + population.getFittest() +" "+ fitnessCalculator.getFitness(population.getFittest()));
+    public void removeCreature(int index){
+        creatures.remove(index);
     }
 
-    private void createPopulation(int populationSize){
-        population = new Population(populationSize, fitnessCalculator, params.getGenotypeSize());
-        population.fillPopulation(populationSize);
+    public Creature getFittest() {
+        if(populationSize()<1) return null;
+
+        Creature fittest = creatures.get(0);
+        for (int i = 0; i < populationSize(); i++) {
+            if (fitnessCalculator.getFitness(fittest) <= fitnessCalculator.getFitness(getCreature(i))) {
+                fittest = getCreature(i);
+            }
+        }
+        return fittest;
     }
 }

@@ -18,13 +18,9 @@ public class Population {
             creatures.add(new Creature(genotypeSize));
         }
     }
-<<<<<<< HEAD
-
-=======
     public ArrayList<Creature> getCreatures(){
     	return creatures;
     }
->>>>>>> topology
     public int populationSize() {
         return creatures.size();
     }
