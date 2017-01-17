@@ -45,6 +45,12 @@ public class Island implements IslandInterface{
         population.removeCreature(i);
         return creature;
     }
+<<<<<<< HEAD
+=======
+    public Population getPopulation(){
+    	return population;
+    }
+>>>>>>> topology
 
     @Override
     public void nextEpoch(){
