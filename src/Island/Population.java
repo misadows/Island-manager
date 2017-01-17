@@ -18,7 +18,9 @@ public class Population {
             creatures.add(new Creature(genotypeSize));
         }
     }
-
+    public ArrayList<Creature> getCreatures(){
+    	return creatures;
+    }
     public int populationSize() {
         return creatures.size();
     }
