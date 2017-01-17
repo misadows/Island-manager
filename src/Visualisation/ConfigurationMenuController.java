@@ -56,7 +56,6 @@ public class ConfigurationMenuController {
 
     private Topology topology;
     private List<IslandParams> islands;
-    //private TabController tabController;
 
     ToggleGroup group = new ToggleGroup();
 
@@ -69,13 +68,6 @@ public class ConfigurationMenuController {
     @FXML
     private RadioButton bidirectionalCircleRadioButton;
 
-
-
-    // 6. Rozbić konrolery i dorobić bindingi
-    // Widzę tu zarówno zarządzanie przebiegiem symulacji, zarządzanie parametrami
-    // wysp i zarządzanie topologiami. Wydzieliliście zarządzanie grafem i wykresami,
-    // bo są niezależne od reszty. Tu pewnie będzie to trudniejsze, ale nikt nie powiedział,
-    // że kontrolery muszą być niezależne - w szczególności można je ułożyć w hierarchię (drzewo).
     @FXML
     private TextField generationsTextField;
 
@@ -125,15 +117,6 @@ public class ConfigurationMenuController {
         for(Node node : ap.getChildren()) {
             if(node.getId() == null) continue;
             try{
-                // 10. Zdecydowanie nie po to ludzie od JavaFX tak się namęczyli z klepaniem bindingów i observerów
-                // realizowanych jako Property żebyśmy musieli teraz ifować kontrolki... Kilka rzeczy do poprawy:
-
-                // I. Kontroler nie musi wiedzieć nic o ograniczeniach konkretnych parametrów, to jest część
-                // modelu i powinna się znaleźć w modelu (cała walidacja moim zdaniem).
-
-                // II. W modelu parametrów powinny się znaleźć Property (dla każdego parametru jedno),
-                // które można zbindować z odpowiednimi property konkretnych kontrolek. Ilekroć zmieni się
-                // wartość w GUI, automatycznie ustawi się również wartość w modelu.
                 switch(node.getId()){
                     case "population":
                         startingPopulation = Integer.parseInt(((TextField) node).getText());
@@ -216,8 +199,6 @@ public class ConfigurationMenuController {
 
     @FXML
     private void initialize() throws IOException {
-        //tabController = new TabController();
-        //tabController.setConfigurationMenuController(this);
         alert.setTitle(ERROR_MESSAGE_TITLE);
         //Default configuration:
         startingPopulation = 1000;

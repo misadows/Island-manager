@@ -1,11 +1,12 @@
 package Visualisation;
 
-//import Island.EpochResult;
 
+import Model.Result;
 import Model.Topology;
 import Topology.TopologySimulator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -21,8 +22,12 @@ public class MainApp extends Application {
     public static String CONFIGURATION_MENU = "ConfigurationMenu.fxml";
     public static String VISUALISATION = "Visualisation.fxml";
 
+    private Result result;
+    private MockResults mockResults;
+
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private AnimationController animationController;
 
     public MainApp() {}
 
@@ -82,49 +87,42 @@ public class MainApp extends Application {
 
             rootLayout.setCenter(configurationMenu);
 
-            AnimationController controller = loader.getController();
-            controller.setMainApp(this);
+            animationController = loader.getController();
+            animationController.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void showCharts(int island) {
-        // 2. Charty bd jednak generowane dynamicznie
-        // To można załatwić podobnie jak w przypadku innych komponentów (patrz komentarz do initComponent()
-        try {
-            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("Chart.fxml"));
-            AnchorPane chart = (AnchorPane) loader.load();
-            Stage chartStage = new Stage();
-            chartStage.setTitle(CHAR_TITLE);
-            chartStage.initModality(Modality.WINDOW_MODAL);
-            chartStage.initOwner(primaryStage);
-            Scene scene = new Scene(chart, 704, 768);
-            chartStage.setScene(scene);
+        Stage chartStage = new Stage();
+        chartStage.setTitle(CHAR_TITLE);
+        chartStage.initModality(Modality.WINDOW_MODAL);
+        chartStage.initOwner(primaryStage);
 
-//            TODO There is a bug connected with displaying charts, not repaired yet
-//            ChartsController controller = loader.getController();
-//            MockResults mockResults = new MockResults(100);
-//            controller.setResultsData(mockResults, island);
+        ChartsController controller = new ChartsController(100);
 
-            chartStage.show();
+        Group root = controller.setResultsData(mockResults, island);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //Creating a scene object
+        Scene scene = new Scene(root, 500, 400);
+
+        //Setting title to the Stage
+        chartStage.setTitle("Island " + (island+1));
+
+        //Adding scene to the stage
+        chartStage.setScene(scene);
+        chartStage.sizeToScene();
+        //Displaying the contents of the stage
+        chartStage.show();
     }
 
     public void startProgram(Topology topology){
-        // 4. Wyciągnać to gdzieś do innego layoutu
-        // SRP. Nie jestem przekonany czy MainApp to dobre miejsce na zarządzanie symulacją.
-
-        // Odpowiedzialnością MainApp jest stworzenie wszystkich kontrolerów i widoków
-        // oraz pospinanie ich ze sobą. Zarządzaniem symulacją powinien się moim zdaniem
-        // zająć jakiś główny kontroler (zwykle nazywa się go RootControllerem). Wówczas
-        // każdy z kontrolerów miałby dostęp do RootControllera (a nie do MainApp) i przez
-        // niego np. odpalał symulację.
         TopologySimulator topologySimulator = new TopologySimulator(topology);
-        //Result result = topologySimulator.startSimulation();
+        // result = topologySimulator.startSimulation();
+        // if(result != 0) animationController.startAnimation();
+        mockResults = new MockResults(100);
+        animationController.startAnimation(mockResults.getMigrations(), mockResults.getGenerations());
         // TODO wait until Topology module finished, and connect all application parts
     }
 

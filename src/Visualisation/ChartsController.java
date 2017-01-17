@@ -1,49 +1,51 @@
 package Visualisation;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.chart.CategoryAxis;
+import javafx.scene.Group;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
-import java.util.Arrays;
 import java.util.List;
 
 
 public class ChartsController {
-    private MainApp mainApp;
 
-    @FXML
-    private LineChart<Integer, Integer> lineChart;
 
-    @FXML
-    private CategoryAxis generationsAxis;
+    private LineChart lineChart;
+    private XYChart.Series series;
 
-    private ObservableList<String> generations = FXCollections.observableArrayList();
-
-    public void setResultsData(MockResults results, int island) {
+    public Group setResultsData(MockResults results, int island) {
         List<Integer> result = results.getIslandResults()[island];
 
-        XYChart.Series series = new XYChart.Series();
-        for (int i = 0; i < result.size(); i++) {
-            series.getData().add(new XYChart.Data(i, result.get(i)));
+        XYChart.Series max_population = new XYChart.Series();
+        XYChart.Series max_fitness = new XYChart.Series();
+        XYChart.Series average_fitness = new XYChart.Series();
+        max_population.setName("Max population");
+        max_fitness.setName("Max fitness");
+        average_fitness.setName("Average fitness");
+        for (int i = 0; i < (result.size()-5)/3; i+=5) {
+            max_population.getData().add(new XYChart.Data(i, result.get(i)));
+            max_fitness.getData().add(new XYChart.Data(i, result.get(i+result.size()/3)));
+            average_fitness.getData().add(new XYChart.Data(i, result.get(i+(result.size()/3))*2));
         }
         //It will be possible to add exactly 3 series averageFitness, maximumFitness, populationNumber
-        lineChart.getData().add(series);
+        lineChart.getData().add(max_population);
+        lineChart.getData().add(max_fitness);
+        lineChart.getData().add(average_fitness);
+        Group root = new Group(lineChart);
+        return root;
     }
 
-public ChartsController() {}
+    public ChartsController(int generations) {
+        //Defining the x axis
+        NumberAxis xAxis = new NumberAxis(0, generations, 10);
+        xAxis.setLabel("Generations");
 
-    @FXML
-    private void initialize() {
-        // Temporary added, generationAxis will be dynamically change depend of generation size
-        generations.addAll(Arrays.asList("0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"));
-        generationsAxis.setCategories(generations);
+        //Defining the y axis
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Value");
+
+        //Creating the line chart
+        lineChart = new LineChart(xAxis, yAxis);
     }
-
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-
 }

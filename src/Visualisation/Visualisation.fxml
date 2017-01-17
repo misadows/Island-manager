@@ -12,22 +12,22 @@
 
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #7FDBFF;">
                     <children>
-                  <Button layoutX="257.0" layoutY="231.0" mnemonicParsing="false" onAction="#handleIsland1Clicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 200; -fx-background-color: #98fb98;" text="Island I" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="40.0">
+                  <Button fx:id="0" layoutX="257.0" layoutY="231.0" mnemonicParsing="false" onAction="#handleIslandClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 200; -fx-background-color: #98fb98;" text="Island I" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="40.0">
                      <font>
                         <Font name="Apple SD Gothic Neo Light" size="40.0" />
                      </font>
                   </Button>
-                  <Button layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleIsland2Clicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 200; -fx-background-color: #98fb98;" text="Island II" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+                  <Button fx:id="1" layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleIslandClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 200; -fx-background-color: #98fb98;" text="Island II" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
                      <font>
                         <Font name="Apple SD Gothic Neo Light" size="40.0" />
                      </font>
                   </Button>
-                  <Button layoutX="60.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleIsland3Clicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 200; -fx-background-color: #98fb98;" text="Island III" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0">
+                  <Button fx:id="2" layoutX="60.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleIslandClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 200; -fx-background-color: #98fb98;" text="Island III" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0">
                      <font>
                         <Font name="Apple SD Gothic Neo Light" size="40.0" />
                      </font>
                   </Button>
-                  <Button layoutX="70.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleIsland4Clicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 200; -fx-background-color: #98fb98;" text="Island IV" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="40.0">
+                  <Button fx:id="3" layoutX="70.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleIslandClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 200; -fx-background-color: #98fb98;" text="Island IV" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="40.0">
                      <font>
                         <Font name="Apple SD Gothic Neo Light" size="40.0" />
                      </font>

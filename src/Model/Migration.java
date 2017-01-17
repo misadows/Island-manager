@@ -6,10 +6,12 @@ package Model;
 public class Migration {
     private int fromIsland;
     private int toIsland;
+    private int epoch;
 
-    public Migration(int fromIsland, int toIsland){
+    public Migration(int fromIsland, int toIsland, int epoch){
         this.fromIsland = fromIsland;
         this.toIsland = toIsland;
+        this.epoch = epoch;
     }
 
     public int getToIsland() {
@@ -26,5 +28,13 @@ public class Migration {
 
     public void setFromIsland(int fromIsland) {
         this.fromIsland = fromIsland;
+    }
+
+    public int getEpoch() {
+        return epoch;
+    }
+
+    public void setEpoch(int epoch) {
+        this.epoch = epoch;
     }
 }
